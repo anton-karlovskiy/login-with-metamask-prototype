@@ -2,7 +2,7 @@
 // ray test touch <
 import { useEffect } from 'react';
 import { coinbaseWallet, hooks } from '../../connectors/coinbaseWallet';
-import { Accounts } from '../Accounts';
+import Accounts from '../Accounts';
 import Card from '../Card';
 import { Chain } from '../Chain';
 import { ConnectWithSelect } from '../ConnectWithSelect';

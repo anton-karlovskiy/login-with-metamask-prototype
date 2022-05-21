@@ -5,7 +5,7 @@ import {
   hooks,
   metaMask
 } from 'connectors/metaMask';
-import { Accounts } from 'components/Accounts';
+import Accounts from 'components/Accounts';
 import Card from 'components/Card';
 import { Chain } from 'components/Chain';
 import { ConnectWithSelect } from 'components/ConnectWithSelect';
