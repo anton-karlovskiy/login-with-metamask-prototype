@@ -1,5 +1,4 @@
 
-// ray test touch <
 import type { AddEthereumChainParameter } from '@web3-react/types';
 
 const ETH: AddEthereumChainParameter['nativeCurrency'] = {
@@ -154,4 +153,3 @@ export {
   CHAINS,
   URLS
 };
-// ray test touch >
