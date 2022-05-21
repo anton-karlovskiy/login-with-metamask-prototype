@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { coinbaseWallet, hooks } from '../../connectors/coinbaseWallet';
 import { Accounts } from '../Accounts';
-import { Card } from '../Card';
+import Card from '../Card';
 import { Chain } from '../Chain';
 import { ConnectWithSelect } from '../ConnectWithSelect';
 import { Status } from '../Status';

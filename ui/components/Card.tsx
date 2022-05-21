@@ -1,8 +1,12 @@
 
-// ray test touch <
-export function Card({ children }: { children: JSX.Element | JSX.Element[]; }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+function Card({ children }: Props) {
   return (
     <div
+      // TODO: could use tailwindcss
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -18,4 +22,5 @@ export function Card({ children }: { children: JSX.Element | JSX.Element[]; }) {
     </div>
   );
 }
-// ray test touch >
+
+export default Card;
