@@ -1,8 +1,10 @@
 
-// ray test touch <
 import * as React from 'react';
 
-import { hooks, network } from 'connectors/network';
+import {
+  hooks,
+  network
+} from 'connectors/network';
 import Accounts from '../Accounts';
 import Card from '../Card';
 import Chain from '../Chain';
@@ -19,7 +21,7 @@ const {
   useENSNames
 } = hooks;
 
-export default function NetworkCard() {
+function NetworkCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -60,4 +62,5 @@ export default function NetworkCard() {
     </Card>
   );
 }
-// ray test touch >
+
+export default NetworkCard;
