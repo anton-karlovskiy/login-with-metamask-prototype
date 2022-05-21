@@ -8,7 +8,15 @@ import Chain from '../Chain';
 import ConnectWithSelect from '../ConnectWithSelect';
 import Status from '../Status';
 
-const { useChainId, useAccounts, useError, useIsActivating, useIsActive, useProvider, useENSNames } = hooks;
+const {
+  useChainId,
+  useAccounts,
+  useError,
+  useIsActivating,
+  useIsActive,
+  useProvider,
+  useENSNames
+} = hooks;
 
 export default function WalletConnectCard() {
   const chainId = useChainId();
