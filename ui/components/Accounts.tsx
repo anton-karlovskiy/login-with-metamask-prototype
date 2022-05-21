@@ -1,5 +1,4 @@
 
-// ray test touch <
 import * as React from 'react';
 import type { BigNumber } from '@ethersproject/bignumber';
 import { formatEther } from '@ethersproject/units';
@@ -73,4 +72,3 @@ function Accounts({
 }
 
 export default Accounts;
-// ray test touch >
