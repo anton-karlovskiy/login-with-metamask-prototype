@@ -1,28 +1,35 @@
 
 import type { NextPage } from 'next';
+import clsx from 'clsx';
 
-// ray test touch <
-import CoinbaseWalletCard from '../components/connectorCards/CoinbaseWalletCard';
-import GnosisSafeCard from '../components/connectorCards/GnosisSafeCard';
-import MetaMaskCard from '../components/connectorCards/MetaMaskCard';
-import NetworkCard from '../components/connectorCards/NetworkCard';
-import WalletConnectCard from '../components/connectorCards/WalletConnectCard';
 import ProviderExample from '../components/ProviderExample';
+import MetaMaskCard from '../components/connectorCards/MetaMaskCard';
+// ray test touch <
+import WalletConnectCard from '../components/connectorCards/WalletConnectCard';
+import CoinbaseWalletCard from '../components/connectorCards/CoinbaseWalletCard';
+import NetworkCard from '../components/connectorCards/NetworkCard';
+import GnosisSafeCard from '../components/connectorCards/GnosisSafeCard';
+// ray test touch >
 
 const Home: NextPage = () => {
   return (
     <>
       <ProviderExample />
-      <div style={{ display: 'flex', flexFlow: 'wrap', fontFamily: 'sans-serif' }}>
+      <div
+        className={clsx(
+          'flex',
+          'flex-wrap'
+        )}>
         <MetaMaskCard />
+        {/* ray test touch < */}
         <WalletConnectCard />
         <CoinbaseWalletCard />
         <NetworkCard />
         <GnosisSafeCard />
+        {/* ray test touch > */}
       </div>
     </>
   );
 };
 
 export default Home;
-// ray test touch >
