@@ -9,7 +9,7 @@ import { Accounts } from 'components/Accounts';
 import Card from 'components/Card';
 import { Chain } from 'components/Chain';
 import { ConnectWithSelect } from 'components/ConnectWithSelect';
-import { Status } from 'components/Status';
+import Status from 'components/Status';
 
 const {
   useChainId,
