@@ -1,5 +1,4 @@
 
-// ray test touch <
 import * as React from 'react';
 import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import type { Web3ReactHooks } from '@web3-react/core';
@@ -194,4 +193,3 @@ function ConnectWithSelect({
 }
 
 export default ConnectWithSelect;
-// ray test touch >
