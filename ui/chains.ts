@@ -30,7 +30,7 @@ function isExtendedChainInformation(
   return !!(chainInformation as ExtendedChainInformation).nativeCurrency;
 }
 
-export function getAddChainParameters(chainId: number): AddEthereumChainParameter | number {
+function getAddChainParameters(chainId: number): AddEthereumChainParameter | number {
   const chainInformation = CHAINS[chainId];
   if (isExtendedChainInformation(chainInformation)) {
     return {
@@ -45,7 +45,7 @@ export function getAddChainParameters(chainId: number): AddEthereumChainParamete
   }
 }
 
-export const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainInformation; } = {
+const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainInformation; } = {
   1: {
     urls: [
       process.env.infuraKey ? `https://mainnet.infura.io/v3/${process.env.infuraKey}` : undefined,
@@ -136,7 +136,7 @@ export const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainI
   }
 };
 
-export const URLS: { [chainId: number]: string[]; } = Object.keys(CHAINS).reduce<{ [chainId: number]: string[]; }>(
+const URLS: { [chainId: number]: string[]; } = Object.keys(CHAINS).reduce<{ [chainId: number]: string[]; }>(
   (accumulator, chainId) => {
     const validURLs: string[] = CHAINS[Number(chainId)].urls;
 
@@ -148,4 +148,10 @@ export const URLS: { [chainId: number]: string[]; } = Object.keys(CHAINS).reduce
   },
   {}
 );
+
+export {
+  getAddChainParameters,
+  CHAINS,
+  URLS
+};
 // ray test touch >

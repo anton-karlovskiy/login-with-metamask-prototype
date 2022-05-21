@@ -5,7 +5,7 @@ import { gnosisSafe, hooks } from '../../connectors/gnosisSafe';
 import Accounts from '../Accounts';
 import Card from '../Card';
 import { Chain } from '../Chain';
-import { ConnectWithSelect } from '../ConnectWithSelect';
+import ConnectWithSelect from '../ConnectWithSelect';
 import Status from '../Status';
 
 const { useChainId, useAccounts, useError, useIsActivating, useIsActive, useProvider, useENSNames } = hooks;
