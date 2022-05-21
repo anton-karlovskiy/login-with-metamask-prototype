@@ -11,7 +11,7 @@ import {
   CHAINS,
   getAddChainParameters,
   URLS
-} from 'chains';
+} from 'config/chains';
 
 const INVALID_CHAIN_ID = -1;
 const ETHEREUM_MAINNET_CHAIN_ID = 1;

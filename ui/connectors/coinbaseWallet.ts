@@ -2,7 +2,7 @@
 // ray test touch <
 import { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import { initializeConnector } from '@web3-react/core';
-import { URLS } from '../chains';
+import { URLS } from '../config/chains';
 
 export const [coinbaseWallet, hooks] = initializeConnector<CoinbaseWallet>(
   actions =>
