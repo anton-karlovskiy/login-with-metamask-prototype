@@ -1,7 +1,9 @@
 
-// ray test touch <
-import { useEffect } from 'react';
-import { coinbaseWallet, hooks } from '../../connectors/coinbaseWallet';
+import * as React from 'react';
+import {
+  coinbaseWallet,
+  hooks
+} from 'connectors/coinbaseWallet';
 import Accounts from '../Accounts';
 import Card from '../Card';
 import Chain from '../Chain';
@@ -18,7 +20,7 @@ const {
   useENSNames
 } = hooks;
 
-export default function CoinbaseWalletCard() {
+function CoinbaseWalletCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -29,8 +31,8 @@ export default function CoinbaseWalletCard() {
   const provider = useProvider();
   const ENSNames = useENSNames(provider);
 
-  // attempt to connect eagerly on mount
-  useEffect(() => {
+  // Attempt to connect eagerly on mount
+  React.useEffect(() => {
     void coinbaseWallet.connectEagerly();
   }, []);
 
@@ -59,4 +61,5 @@ export default function CoinbaseWalletCard() {
     </Card>
   );
 }
-// ray test touch >
+
+export default CoinbaseWalletCard;

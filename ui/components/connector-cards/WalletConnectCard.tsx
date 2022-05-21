@@ -1,7 +1,7 @@
 
 // ray test touch <
 import { useEffect } from 'react';
-import { hooks, walletConnect } from '../../connectors/walletConnect';
+import { hooks, walletConnect } from 'connectors/walletConnect';
 import Accounts from '../Accounts';
 import Card from '../Card';
 import Chain from '../Chain';
@@ -29,7 +29,7 @@ export default function WalletConnectCard() {
   const provider = useProvider();
   const ENSNames = useENSNames(provider);
 
-  // attempt to connect eagerly on mount
+  // Attempt to connect eagerly on mount
   useEffect(() => {
     void walletConnect.connectEagerly();
   }, []);
