@@ -1,5 +1,4 @@
 
-// ray test touch <
 import * as React from 'react';
 
 import {
@@ -22,7 +21,7 @@ const {
   useENSNames
 } = hooks;
 
-export default function WalletConnectCard() {
+function WalletConnectCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -63,4 +62,5 @@ export default function WalletConnectCard() {
     </Card>
   );
 }
-// ray test touch >
+
+export default WalletConnectCard;
