@@ -1,16 +1,27 @@
 
-// ray test touch <
-import { useEffect } from 'react';
-import { hooks, metaMask } from '../../connectors/metaMask';
-import { Accounts } from '../Accounts';
-import { Card } from '../Card';
-import { Chain } from '../Chain';
-import { ConnectWithSelect } from '../ConnectWithSelect';
-import { Status } from '../Status';
+import * as React from 'react';
 
-const { useChainId, useAccounts, useError, useIsActivating, useIsActive, useProvider, useENSNames } = hooks;
+import {
+  hooks,
+  metaMask
+} from 'connectors/metaMask';
+import { Accounts } from 'components/Accounts';
+import { Card } from 'components/Card';
+import { Chain } from 'components/Chain';
+import { ConnectWithSelect } from 'components/ConnectWithSelect';
+import { Status } from 'components/Status';
 
-export default function MetaMaskCard() {
+const {
+  useChainId,
+  useAccounts,
+  useError,
+  useIsActivating,
+  useIsActive,
+  useProvider,
+  useENSNames
+} = hooks;
+
+function MetaMaskCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -21,8 +32,8 @@ export default function MetaMaskCard() {
   const provider = useProvider();
   const ENSNames = useENSNames(provider);
 
-  // attempt to connect eagerly on mount
-  useEffect(() => {
+  // Attempt to connect eagerly on mount
+  React.useEffect(() => {
     void metaMask.connectEagerly();
   }, []);
 
@@ -34,6 +45,7 @@ export default function MetaMaskCard() {
           isActivating={isActivating}
           error={error}
           isActive={isActive} />
+        {/* TODO: could use tailwindcss */}
         <div style={{ marginBottom: '1rem' }} />
         <Chain chainId={chainId} />
         <Accounts
@@ -41,6 +53,7 @@ export default function MetaMaskCard() {
           provider={provider}
           ENSNames={ENSNames} />
       </div>
+      {/* TODO: could use tailwindcss */}
       <div style={{ marginBottom: '1rem' }} />
       <ConnectWithSelect
         connector={metaMask}
@@ -51,4 +64,5 @@ export default function MetaMaskCard() {
     </Card>
   );
 }
-// ray test touch >
+
+export default MetaMaskCard;

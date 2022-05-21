@@ -1,14 +1,13 @@
 
 import type { NextPage } from 'next';
-import clsx from 'clsx';
 
 import ProviderExample from 'components/ProviderExample';
-import MetaMaskCard from 'components/connectorCards/MetaMaskCard';
+import MetaMaskCard from 'components/connector-cards/MetaMaskCard';
 // ray test touch <
-import WalletConnectCard from 'components/connectorCards/WalletConnectCard';
-import CoinbaseWalletCard from 'components/connectorCards/CoinbaseWalletCard';
-import NetworkCard from 'components/connectorCards/NetworkCard';
-import GnosisSafeCard from 'components/connectorCards/GnosisSafeCard';
+import WalletConnectCard from 'components/connector-cards/WalletConnectCard';
+import CoinbaseWalletCard from 'components/connector-cards/CoinbaseWalletCard';
+import NetworkCard from 'components/connector-cards/NetworkCard';
+import GnosisSafeCard from 'components/connector-cards/GnosisSafeCard';
 // ray test touch >
 
 const Home: NextPage = () => {
@@ -16,10 +15,12 @@ const Home: NextPage = () => {
     <>
       <ProviderExample />
       <div
-        className={clsx(
-          'flex',
-          'flex-wrap'
-        )}>
+        // TODO: could use tailwindcss
+        style={{
+          display: 'flex',
+          flexFlow: 'wrap',
+          fontFamily: 'sans-serif'
+        }}>
         <MetaMaskCard />
         {/* ray test touch < */}
         <WalletConnectCard />
