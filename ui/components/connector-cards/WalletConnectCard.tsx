@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { hooks, walletConnect } from '../../connectors/walletConnect';
 import Accounts from '../Accounts';
 import Card from '../Card';
-import { Chain } from '../Chain';
+import Chain from '../Chain';
 import ConnectWithSelect from '../ConnectWithSelect';
 import Status from '../Status';
 

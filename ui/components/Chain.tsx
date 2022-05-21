@@ -1,9 +1,13 @@
 
-// ray test touch <
 import type { Web3ReactHooks } from '@web3-react/core';
-import { CHAINS } from '../config/chains';
 
-export function Chain({ chainId }: { chainId: ReturnType<Web3ReactHooks['useChainId']>; }) {
+import { CHAINS } from 'config/chains';
+
+interface Props {
+  chainId: ReturnType<Web3ReactHooks['useChainId']>;
+}
+
+function Chain({ chainId }: Props) {
   if (chainId === undefined) return null;
 
   const name = chainId ? CHAINS[chainId]?.name : undefined;
@@ -25,4 +29,5 @@ export function Chain({ chainId }: { chainId: ReturnType<Web3ReactHooks['useChai
     </div>
   );
 }
-// ray test touch >
+
+export default Chain;

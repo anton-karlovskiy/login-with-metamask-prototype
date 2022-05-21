@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { gnosisSafe, hooks } from '../../connectors/gnosisSafe';
 import Accounts from '../Accounts';
 import Card from '../Card';
-import { Chain } from '../Chain';
+import Chain from '../Chain';
 import ConnectWithSelect from '../ConnectWithSelect';
 import Status from '../Status';
 
