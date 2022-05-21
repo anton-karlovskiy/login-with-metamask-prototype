@@ -1,7 +1,10 @@
 
-// ray test touch <
-import { useEffect } from 'react';
-import { gnosisSafe, hooks } from 'connectors/gnosisSafe';
+import * as React from 'react';
+
+import {
+  gnosisSafe,
+  hooks
+} from 'connectors/gnosisSafe';
 import Accounts from '../Accounts';
 import Card from '../Card';
 import Chain from '../Chain';
@@ -18,7 +21,7 @@ const {
   useENSNames
 } = hooks;
 
-export default function GnosisSafeCard() {
+function GnosisSafeCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -30,7 +33,7 @@ export default function GnosisSafeCard() {
   const ENSNames = useENSNames(provider);
 
   // Attempt to connect eagerly on mount
-  useEffect(() => {
+  React.useEffect(() => {
     void gnosisSafe.connectEagerly();
   }, []);
 
@@ -59,4 +62,5 @@ export default function GnosisSafeCard() {
     </Card>
   );
 }
-// ray test touch >
+
+export default GnosisSafeCard;

@@ -1,6 +1,7 @@
 
 // ray test touch <
-import { useEffect } from 'react';
+import * as React from 'react';
+
 import { hooks, network } from 'connectors/network';
 import Accounts from '../Accounts';
 import Card from '../Card';
@@ -30,7 +31,7 @@ export default function NetworkCard() {
   const ENSNames = useENSNames(provider);
 
   // Attempt to connect eagerly on mount
-  useEffect(() => {
+  React.useEffect(() => {
     void network.activate();
   }, []);
 
