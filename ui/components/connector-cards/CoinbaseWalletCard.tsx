@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   coinbaseWallet,
   hooks
-} from 'connectors/coinbaseWallet';
+} from 'connectors/coinbase-wallet';
 import Accounts from '../Accounts';
 import Card from '../Card';
 import Chain from '../Chain';

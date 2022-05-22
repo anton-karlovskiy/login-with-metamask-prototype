@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   hooks,
   walletConnect
-} from 'connectors/walletConnect';
+} from 'connectors/wallet-connect';
 import Accounts from '../Accounts';
 import Card from '../Card';
 import Chain from '../Chain';

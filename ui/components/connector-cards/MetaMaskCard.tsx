@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   hooks,
   metaMask
-} from 'connectors/metaMask';
+} from 'connectors/meta-mask';
 import Accounts from 'components/Accounts';
 import Card from 'components/Card';
 import Chain from 'components/Chain';

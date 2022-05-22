@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   gnosisSafe,
   hooks
-} from 'connectors/gnosisSafe';
+} from 'connectors/gnosis-safe';
 import Accounts from '../Accounts';
 import Card from '../Card';
 import Chain from '../Chain';
