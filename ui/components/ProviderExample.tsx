@@ -1,5 +1,4 @@
 
-// ray test touch <
 import { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import {
   useWeb3React,
@@ -66,4 +65,3 @@ function ProviderExample() {
 }
 
 export default ProviderExample;
-// ray test touch >
