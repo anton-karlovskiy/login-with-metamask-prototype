@@ -10,11 +10,11 @@ import { WalletConnect } from '@web3-react/walletconnect';
 import {
   CHAINS,
   getAddChainParameters,
-  URLS
+  URLS,
+  ETHEREUM_MAINNET_CHAIN_ID
 } from 'config/chains';
 
 const INVALID_CHAIN_ID = -1;
-const ETHEREUM_MAINNET_CHAIN_ID = 1;
 
 function ChainSelect({
   chainId,

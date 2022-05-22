@@ -1,14 +1,16 @@
 
-// ray test touch <
 import { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import { initializeConnector } from '@web3-react/core';
-import { URLS } from '../config/chains';
+
+import {
+  URLS,
+  ETHEREUM_MAINNET_CHAIN_ID
+} from 'config/chains';
 
 export const [coinbaseWallet, hooks] = initializeConnector<CoinbaseWallet>(
   actions =>
     new CoinbaseWallet(actions, {
-      url: URLS[1][0],
+      url: URLS[ETHEREUM_MAINNET_CHAIN_ID][0], // `0` the first item in the `URLS` array
       appName: 'web3-react'
     })
 );
-// ray test touch >

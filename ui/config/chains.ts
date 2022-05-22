@@ -44,8 +44,10 @@ function getAddChainParameters(chainId: number): AddEthereumChainParameter | num
   }
 }
 
+const ETHEREUM_MAINNET_CHAIN_ID = 1;
+
 const CHAINS: { [chainId: number]: BasicChainInformation | ExtendedChainInformation; } = {
-  1: {
+  [ETHEREUM_MAINNET_CHAIN_ID]: {
     urls: [
       process.env.infuraKey ? `https://mainnet.infura.io/v3/${process.env.infuraKey}` : undefined,
       process.env.alchemyKey ? `https://eth-mainnet.alchemyapi.io/v2/${process.env.alchemyKey}` : undefined,
@@ -151,5 +153,6 @@ const URLS: { [chainId: number]: string[]; } = Object.keys(CHAINS).reduce<{ [cha
 export {
   getAddChainParameters,
   CHAINS,
-  URLS
+  URLS,
+  ETHEREUM_MAINNET_CHAIN_ID
 };
