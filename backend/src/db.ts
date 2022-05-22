@@ -27,6 +27,7 @@ User.init(
 			allowNull: false,
 			type: STRING,
 			unique: true,
+			// To make it simple, I set the publicAddress field as lowercase. A more rigorous implementation would add a validation function to check that all addresses here are https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
 			validate: { isLowercase: true }
 		},
 		username: {
