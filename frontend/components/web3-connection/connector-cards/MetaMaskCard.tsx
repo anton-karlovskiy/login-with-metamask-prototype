@@ -5,11 +5,11 @@ import {
   hooks,
   metaMask
 } from 'connectors/meta-mask';
-import Accounts from 'components/Accounts';
-import Card from 'components/Card';
-import Chain from 'components/Chain';
-import ConnectWithSelect from 'components/ConnectWithSelect';
-import Status from 'components/Status';
+import Accounts from 'components/web3-connection/Accounts';
+import Card from 'components/web3-connection/Card';
+import Chain from 'components/web3-connection/Chain';
+import ConnectWithSelect from 'components/web3-connection/ConnectWithSelect';
+import Status from 'components/web3-connection/Status';
 
 const {
   useChainId,
