@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "lint": "yarn eslint .",
     "lint-fix": "yarn lint --fix",
     "test-all": "yarn lint && yarn type-check",
-    "prepare": "cd .. && husky install ui/.husky"
+    "prepare": "cd .. && husky install frontend/.husky"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": [
