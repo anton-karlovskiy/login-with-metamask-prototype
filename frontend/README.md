@@ -1,5 +1,5 @@
 
-# Octav Technical Project
+# Octav Technical Project (Frontend)
 
 ## Tech stacks
 
