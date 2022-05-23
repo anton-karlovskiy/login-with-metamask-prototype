@@ -40,6 +40,7 @@ export const App = (): JSX.Element => {
   return (
     <div className='App'>
       <header className='App-header'>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logo}
           className='App-logo'
