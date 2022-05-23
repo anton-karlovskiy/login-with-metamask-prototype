@@ -1,5 +1,4 @@
 
-// ray test touch <
 import type { NextPage } from 'next';
 
 import App from 'components/web3-authentication/App';
@@ -13,4 +12,3 @@ const Web3Authentication: NextPage = () => {
 };
 
 export default Web3Authentication;
-// ray test touch >
