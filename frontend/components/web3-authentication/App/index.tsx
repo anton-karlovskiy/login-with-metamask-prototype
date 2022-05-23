@@ -64,7 +64,5 @@ const App = (): JSX.Element => {
   );
 };
 
-export {
-  App
-};
+export default App;
 // ray test touch >
