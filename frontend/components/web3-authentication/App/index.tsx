@@ -3,7 +3,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import { Login } from '../Login';
+import Login from '../Login';
 import { Profile } from '../Profile/Profile';
 import { Auth } from '../types';
 

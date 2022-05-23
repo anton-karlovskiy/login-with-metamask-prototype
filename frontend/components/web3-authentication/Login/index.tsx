@@ -1,9 +1,8 @@
 
 // ray test touch <
-// import './Login.css';
-
-import React, { useState } from 'react';
+import * as React from 'react';
 import Web3 from 'web3';
+import clsx from 'clsx';
 
 import { Auth } from '../types';
 
@@ -13,8 +12,8 @@ interface Props {
 
 let web3: Web3 | undefined = undefined; // Will hold the web3 instance
 
-export const Login = ({ onLoggedIn }: Props): JSX.Element => {
-  const [loading, setLoading] = useState(false); // Loading button state
+const Login = ({ onLoggedIn }: Props): JSX.Element => {
+  const [loading, setLoading] = React.useState(false); // Loading button state
 
   const handleAuthenticate = ({
     publicAddress,
@@ -53,7 +52,7 @@ export const Login = ({ onLoggedIn }: Props): JSX.Element => {
     }
   };
 
-  const handleSignup = (publicAddress: string) =>
+  const handleRegister = (publicAddress: string) =>
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
       body: JSON.stringify({ publicAddress }),
       headers: {
@@ -99,7 +98,7 @@ export const Login = ({ onLoggedIn }: Props): JSX.Element => {
       .then(response => response.json())
     // If yes, retrieve it. If no, create it.
       .then(users =>
-        users.length ? users[0] : handleSignup(publicAddress)
+        users.length ? users[0] : handleRegister(publicAddress)
       )
     // Popup MetaMask confirmation modal to sign message
       .then(handleSignMessage)
@@ -121,21 +120,23 @@ export const Login = ({ onLoggedIn }: Props): JSX.Element => {
         For the purpose of this demo, only MetaMask login is implemented.
       </p>
       <button
-        className='Login-button Login-mm'
+        className={clsx(
+          'text-white',
+          'block',
+          'text-base',
+          'w-72',
+          'h-14',
+          'mt-2.5',
+          'mx-auto',
+          'bg-yellow-500',
+          'hover:bg-opacity-90'
+        )}
         onClick={handleClick}>
         {loading ? 'Loading...' : 'Login with MetaMask'}
-      </button>
-      <button
-        className='Login-button Login-fb'
-        disabled>
-        Login with Facebook
-      </button>
-      <button
-        className='Login-button Login-email'
-        disabled>
-        Login with Email
       </button>
     </div>
   );
 };
+
+export default Login;
 // ray test touch >

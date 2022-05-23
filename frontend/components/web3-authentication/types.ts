@@ -1,6 +1,10 @@
 
 // ray test touch <
-export interface Auth {
+interface Auth {
   accessToken: string;
 }
+
+export type {
+  Auth
+};
 // ray test touch >
