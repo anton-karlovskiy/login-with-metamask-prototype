@@ -31,3 +31,4 @@ yarn start
 - Handle "TODO: could use tailwindcss".
 - Interact with the local storage using a well-designed mechanism. e.g. the one from `react-use`
 - Use `ethers` instead of `web3`.
+- Replace temporary packages properly.
