@@ -1,13 +1,11 @@
 
 // ray test touch <
-// import './App.css';
-
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import clsx from 'clsx';
 
 import { Login } from '../Login';
 import { Profile } from '../Profile/Profile';
 import { Auth } from '../types';
-import logo from './logo.svg';
 
 const LS_KEY = 'login-with-metamask:auth';
 
@@ -15,10 +13,10 @@ interface State {
   auth?: Auth;
 }
 
-export const App = (): JSX.Element => {
-  const [state, setState] = useState<State>({});
+const App = (): JSX.Element => {
+  const [state, setState] = React.useState<State>({});
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Access token is stored in local storage
     const ls = window.localStorage.getItem(LS_KEY);
     const auth = ls && JSON.parse(ls);
@@ -38,18 +36,22 @@ export const App = (): JSX.Element => {
   const { auth } = state;
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={logo}
-          className='App-logo'
-          alt='logo' />
-        <h1 className='App-title'>
+    <div
+      className={clsx(
+        'text-center',
+        'space-y-8'
+      )}>
+      <header
+        className={clsx(
+          'bg-gray-900',
+          'p-5',
+          'text-white'
+        )}>
+        <h1 className='text-2xl'>
           Welcome to Login with MetaMask Demo
         </h1>
       </header>
-      <div className='App-intro'>
+      <div className='text-lg'>
         {auth ? (
           <Profile
             auth={auth}
@@ -60,5 +62,9 @@ export const App = (): JSX.Element => {
       </div>
     </div>
   );
+};
+
+export {
+  App
 };
 // ray test touch >
