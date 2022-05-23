@@ -4,7 +4,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import Login from '../Login';
-import { Profile } from '../Profile/Profile';
+import Profile from '../Profile';
 import { Auth } from '../types';
 
 const LS_KEY = 'login-with-metamask:auth';

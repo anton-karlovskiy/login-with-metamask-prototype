@@ -1,10 +1,7 @@
 
 // ray test touch <
-// import './Profile.css';
-
+import * as React from 'react';
 import jwtDecode from 'jwt-decode';
-import React, { useState, useEffect } from 'react';
-import Blockies from 'react-blockies';
 
 import { Auth } from '../types';
 
@@ -29,15 +26,19 @@ interface JwtDecoded {
   };
 }
 
-export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
-  const [state, setState] = useState<State>({
+const USERNAME = 'username';
+
+const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
+  const [state, setState] = React.useState<State>({
     loading: false,
     user: undefined,
     username: ''
   });
 
-  useEffect(() => {
-    const { accessToken } = auth;
+  const { accessToken } = auth;
+  React.useEffect(() => {
+    if (!accessToken) return;
+
     const {
       payload: { id }
     } = jwtDecode<JwtDecoded>(accessToken);
@@ -48,9 +49,9 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
       }
     })
       .then(response => response.json())
-      .then(user => setState({ ...state, user }))
+      .then(user => setState(previous => ({ ...previous, user })))
       .catch(window.alert);
-  }, []);
+  }, [accessToken]);
 
   const handleChange = ({
     target: { value }
@@ -87,8 +88,6 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
       });
   };
 
-  const { accessToken } = auth;
-
   const {
     payload: { publicAddress }
   } = jwtDecode<JwtDecoded>(accessToken);
@@ -98,18 +97,16 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
   const username = user && user.username;
 
   return (
-    <div className='Profile'>
-      <p>
-        Logged in as <Blockies seed={publicAddress} />
-      </p>
+    <div className='space-y-4'>
       <div>
-        My username is {username ? <pre>{username}</pre> : 'not set.'}{' '}
-        My publicAddress is <pre>{publicAddress}</pre>
+        My username is {username ? <pre className='inline'>{username}</pre> : 'not set.'}
+        <br />
+        My publicAddress is <pre className='inline'>{publicAddress}</pre>
       </div>
       <div>
-        <label htmlFor='username'>Change username: </label>
+        <label htmlFor={USERNAME}>Change username: </label>
         <input
-          name='username'
+          name={USERNAME}
           onChange={handleChange} />
         <button
           disabled={loading}
@@ -117,10 +114,12 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
           Submit
         </button>
       </div>
-      <p>
+      <div>
         <button onClick={onLoggedOut}>Logout</button>
-      </p>
+      </div>
     </div>
   );
 };
+
+export default Profile;
 // ray test touch >
