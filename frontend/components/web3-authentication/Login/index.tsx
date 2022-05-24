@@ -1,7 +1,6 @@
 
 // ray test touch <
 import * as React from 'react';
-import Web3 from 'web3';
 import clsx from 'clsx';
 
 // ray test touch <<
@@ -14,12 +13,14 @@ interface Props {
   onLoggedIn: (auth: Auth) => void;
 }
 
-let web3: Web3 | undefined = undefined; // Will hold the web3 instance
-
 const Login = ({ onLoggedIn }: Props): JSX.Element => {
   // ray test touch <<
   const provider = hooks.useProvider();
   if (provider === undefined) {
+    throw new Error('Something went wrong!');
+  }
+  const account = hooks.useAccount();
+  if (account === undefined) {
     throw new Error('Something went wrong!');
   }
   // ray test touch >>
@@ -80,27 +81,7 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
       return;
     }
 
-    if (!web3) {
-      try {
-        // Request account access if needed
-        await (window as any).ethereum.enable();
-
-        // We don't know window.web3 version, so we use our own instance of Web3
-        // with the injected provider given by MetaMask
-        web3 = new Web3((window as any).ethereum);
-      } catch (error) {
-        window.alert('You need to allow MetaMask.');
-        return;
-      }
-    }
-
-    const coinbase = await web3.eth.getCoinbase();
-    if (!coinbase) {
-      window.alert('Please activate MetaMask first.');
-      return;
-    }
-
-    const publicAddress = coinbase.toLowerCase();
+    const publicAddress = account.toLowerCase();
     setLoading(true);
 
     // Look if user with current publicAddress is already present on backend
