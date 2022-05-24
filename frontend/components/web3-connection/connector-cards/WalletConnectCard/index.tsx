@@ -3,13 +3,13 @@ import * as React from 'react';
 
 import {
   hooks,
-  network
-} from 'connectors/network';
-import Accounts from '../Accounts';
-import Card from '../Card';
-import Chain from '../Chain';
-import ConnectWithSelect from '../ConnectWithSelect';
-import Status from '../Status';
+  walletConnect
+} from 'connectors/wallet-connect';
+import Accounts from '../../Accounts';
+import Card from '../../Card';
+import Chain from '../../Chain';
+import ConnectWithSelect from '../../ConnectWithSelect';
+import Status from '../../Status';
 
 const {
   useChainId,
@@ -21,7 +21,7 @@ const {
   useENSNames
 } = hooks;
 
-function NetworkCard() {
+function WalletConnectCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -34,13 +34,13 @@ function NetworkCard() {
 
   // Attempt to connect eagerly on mount
   React.useEffect(() => {
-    void network.activate();
+    void walletConnect.connectEagerly();
   }, []);
 
   return (
     <Card>
       <div>
-        <b>Network</b>
+        <b>WalletConnect</b>
         <Status
           isActivating={isActivating}
           error={error}
@@ -54,7 +54,7 @@ function NetworkCard() {
       </div>
       <div style={{ marginBottom: '1rem' }} />
       <ConnectWithSelect
-        connector={network}
+        connector={walletConnect}
         chainId={chainId}
         isActivating={isActivating}
         error={error}
@@ -63,4 +63,4 @@ function NetworkCard() {
   );
 }
 
-export default NetworkCard;
+export default WalletConnectCard;

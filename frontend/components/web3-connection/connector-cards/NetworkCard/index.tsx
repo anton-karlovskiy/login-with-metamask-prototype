@@ -3,13 +3,13 @@ import * as React from 'react';
 
 import {
   hooks,
-  metaMask
-} from 'connectors/meta-mask';
-import Accounts from 'components/web3-connection/Accounts';
-import Card from 'components/web3-connection/Card';
-import Chain from 'components/web3-connection/Chain';
-import ConnectWithSelect from 'components/web3-connection/ConnectWithSelect';
-import Status from 'components/web3-connection/Status';
+  network
+} from 'connectors/network';
+import Accounts from '../../Accounts';
+import Card from '../../Card';
+import Chain from '../../Chain';
+import ConnectWithSelect from '../../ConnectWithSelect';
+import Status from '../../Status';
 
 const {
   useChainId,
@@ -21,7 +21,7 @@ const {
   useENSNames
 } = hooks;
 
-function MetaMaskCard() {
+function NetworkCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -34,18 +34,17 @@ function MetaMaskCard() {
 
   // Attempt to connect eagerly on mount
   React.useEffect(() => {
-    void metaMask.connectEagerly();
+    void network.activate();
   }, []);
 
   return (
     <Card>
       <div>
-        <b>MetaMask</b>
+        <b>Network</b>
         <Status
           isActivating={isActivating}
           error={error}
           isActive={isActive} />
-        {/* TODO: could use tailwindcss */}
         <div style={{ marginBottom: '1rem' }} />
         <Chain chainId={chainId} />
         <Accounts
@@ -53,10 +52,9 @@ function MetaMaskCard() {
           provider={provider}
           ENSNames={ENSNames} />
       </div>
-      {/* TODO: could use tailwindcss */}
       <div style={{ marginBottom: '1rem' }} />
       <ConnectWithSelect
-        connector={metaMask}
+        connector={network}
         chainId={chainId}
         isActivating={isActivating}
         error={error}
@@ -65,4 +63,4 @@ function MetaMaskCard() {
   );
 }
 
-export default MetaMaskCard;
+export default NetworkCard;

@@ -2,14 +2,14 @@
 import * as React from 'react';
 
 import {
-  hooks,
-  walletConnect
-} from 'connectors/wallet-connect';
-import Accounts from '../Accounts';
-import Card from '../Card';
-import Chain from '../Chain';
-import ConnectWithSelect from '../ConnectWithSelect';
-import Status from '../Status';
+  coinbaseWallet,
+  hooks
+} from 'connectors/coinbase-wallet';
+import Accounts from '../../Accounts';
+import Card from '../../Card';
+import Chain from '../../Chain';
+import ConnectWithSelect from '../../ConnectWithSelect';
+import Status from '../../Status';
 
 const {
   useChainId,
@@ -21,7 +21,7 @@ const {
   useENSNames
 } = hooks;
 
-function WalletConnectCard() {
+function CoinbaseWalletCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -34,13 +34,13 @@ function WalletConnectCard() {
 
   // Attempt to connect eagerly on mount
   React.useEffect(() => {
-    void walletConnect.connectEagerly();
+    void coinbaseWallet.connectEagerly();
   }, []);
 
   return (
     <Card>
       <div>
-        <b>WalletConnect</b>
+        <b>Coinbase Wallet</b>
         <Status
           isActivating={isActivating}
           error={error}
@@ -54,7 +54,7 @@ function WalletConnectCard() {
       </div>
       <div style={{ marginBottom: '1rem' }} />
       <ConnectWithSelect
-        connector={walletConnect}
+        connector={coinbaseWallet}
         chainId={chainId}
         isActivating={isActivating}
         error={error}
@@ -63,4 +63,4 @@ function WalletConnectCard() {
   );
 }
 
-export default WalletConnectCard;
+export default CoinbaseWalletCard;
