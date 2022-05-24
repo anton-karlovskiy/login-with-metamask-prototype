@@ -20,6 +20,7 @@ import ConnectorName from 'containers/ConnectorName';
 import Accounts from 'components/web3-connection/Accounts';
 import Status from 'components/web3-connection/Status';
 import Chain from 'components/web3-connection/Chain';
+import ConnectWithSelect from 'components/web3-connection/ConnectWithSelect';
 import {
   hooks as coinbaseWalletHooks,
   coinbaseWallet
@@ -96,6 +97,12 @@ const Web3Authentication: NextPage = () => {
           accounts={accounts}
           provider={provider}
           ENSNames={ENSNames} />
+        <ConnectWithSelect
+          connector={metaMask}
+          chainId={chainId}
+          isActivating={isActivating}
+          error={error}
+          isActive={isActive} />
       </div>
       {isActive && <App />}
       <ConnectorName />

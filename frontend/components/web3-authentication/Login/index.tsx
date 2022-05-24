@@ -75,12 +75,6 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
     }).then(response => response.json());
 
   const handleClick = async () => {
-    // Check if MetaMask is installed
-    if (!(window as any).ethereum) {
-      window.alert('Please install MetaMask first.');
-      return;
-    }
-
     const publicAddress = account.toLowerCase();
     setLoading(true);
 
