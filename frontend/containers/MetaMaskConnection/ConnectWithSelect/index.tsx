@@ -1,4 +1,5 @@
 
+// ray test touch <<
 import * as React from 'react';
 import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import type { Web3ReactHooks } from '@web3-react/core';
@@ -12,7 +13,7 @@ import {
   getAddChainParameters,
   URLS,
   ETHEREUM_MAINNET_CHAIN_ID
-} from 'config/chains';
+} from 'config/web3/chains';
 
 const INVALID_CHAIN_ID = -1;
 
@@ -193,3 +194,4 @@ function ConnectWithSelect({
 }
 
 export default ConnectWithSelect;
+// ray test touch >>

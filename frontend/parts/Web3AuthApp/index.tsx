@@ -1,11 +1,10 @@
 
-// ray test touch <
 import * as React from 'react';
 import clsx from 'clsx';
 
-import Login from '../Login';
-import Profile from '../Profile';
-import { Auth } from '../types';
+import Login from './Login';
+import Profile from './Profile';
+import { Auth } from './types';
 
 const LS_KEY = 'login-with-metamask:auth';
 
@@ -13,11 +12,11 @@ interface State {
   auth?: Auth;
 }
 
-const App = (): JSX.Element => {
+const Web3AuthApp = (): JSX.Element => {
   const [state, setState] = React.useState<State>({});
 
   React.useEffect(() => {
-    // Access token is stored in local storage
+    // Access token is stored in the local storage
     const ls = window.localStorage.getItem(LS_KEY);
     const auth = ls && JSON.parse(ls);
     setState({ auth });
@@ -48,7 +47,7 @@ const App = (): JSX.Element => {
           'text-white'
         )}>
         <h1 className='text-2xl'>
-          Welcome to Login with MetaMask Demo
+          Welcome to Octav technical project
         </h1>
       </header>
       <div className='text-lg'>
@@ -64,5 +63,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
-// ray test touch >
+export default Web3AuthApp;
