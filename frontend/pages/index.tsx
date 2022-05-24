@@ -11,9 +11,7 @@ import { Network } from '@web3-react/network';
 import { WalletConnect } from '@web3-react/walletconnect';
 
 import Web3AuthApp from 'parts/Web3AuthApp';
-// ray test touch <
 import MetaMaskConnection from 'containers/MetaMaskConnection';
-// ray test touch >
 import ConnectorName from 'containers/ConnectorName';
 import {
   hooks as coinbaseWalletHooks,
@@ -58,9 +56,7 @@ const Home: NextPage = () => {
 
   return (
     <Web3ReactProvider connectors={CONNECTORS}>
-      {/* ray test touch < */}
       <MetaMaskConnection />
-      {/* ray test touch > */}
       {isActive && <Web3AuthApp />}
       <ConnectorName />
     </Web3ReactProvider>
