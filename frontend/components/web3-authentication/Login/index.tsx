@@ -72,20 +72,20 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
     const publicAddress = account.toLowerCase();
     setLoading(true);
 
-    // Look if user with current publicAddress is already present on backend
+    // Look if the user with the current publicAddress is already present on the backend
     fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/users?publicAddress=${publicAddress}`
     )
       .then(response => response.json())
-    // If yes, retrieve it. If no, create it.
+    // If yes, retrieve it. If no, create it
       .then(users =>
         users.length ? users[0] : handleRegister(publicAddress)
       )
-    // Popup MetaMask confirmation modal to sign message
+    // Popup a MetaMask confirmation modal to sign a message
       .then(handleSignMessage)
-    // Send signature to backend on the /auth route
+    // Send the signature to the backend on the `/auth` route
       .then(handleAuthenticate)
-    // Pass accessToken back to parent component (to save it in localStorage)
+    // Pass `accessToken` back to its parent component (to save it in the local storage)
       .then(onLoggedIn)
       .catch(error => {
         window.alert(error);

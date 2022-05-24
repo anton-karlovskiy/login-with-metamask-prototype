@@ -16,7 +16,9 @@ interface State {
     id: number;
     username: string;
   };
+  // ray test touch <
   username: string;
+  // ray test touch >
 }
 
 interface JwtDecoded {
@@ -28,14 +30,20 @@ interface JwtDecoded {
 
 const USERNAME = 'username';
 
-const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
+const Profile = ({
+  auth,
+  onLoggedOut
+}: Props): JSX.Element => {
   const [state, setState] = React.useState<State>({
     loading: false,
     user: undefined,
+    // ray test touch <
     username: ''
+    // ray test touch >
   });
 
   const { accessToken } = auth;
+
   React.useEffect(() => {
     if (!accessToken) return;
 
@@ -53,18 +61,30 @@ const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
       .catch(window.alert);
   }, [accessToken]);
 
+  // ray test touch <
   const handleChange = ({
     target: { value }
   }: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, username: value });
   };
+  // ray test touch >
 
+  // ray test touch <
   const handleSubmit = () => {
-    const { accessToken } = auth;
-    const { user, username } = state;
+    const {
+      user,
+      // ray test touch <
+      username
+      // ray test touch >
+    } = state;
 
-    setState({ ...state, loading: true });
+    setState(previous => ({
+      ...previous,
+      loading: true
+    }));
 
+    // TODO: temporary workaround for now
+    // TODO: should prevent the form from being submitted while fetching `user`
     if (!user) {
       window.alert(
         'The user id has not been fetched yet. Please try again in 5 seconds.'
@@ -81,18 +101,22 @@ const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
       method: 'PATCH'
     })
       .then(response => response.json())
-      .then(user => setState({ ...state, loading: false, user }))
-      .catch(err => {
-        window.alert(err);
-        setState({ ...state, loading: false });
+      .then(user => setState(previous => ({ ...previous, loading: false, user })))
+      .catch(error => {
+        window.alert(error);
+        setState(previous => ({ ...previous, loading: false }));
       });
   };
+  // ray test touch >
 
   const {
     payload: { publicAddress }
   } = jwtDecode<JwtDecoded>(accessToken);
 
-  const { loading, user } = state;
+  const {
+    loading,
+    user
+  } = state;
 
   const username = user && user.username;
 
@@ -103,7 +127,8 @@ const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
         <br />
         My publicAddress is <pre className='inline'>{publicAddress}</pre>
       </div>
-      <div>
+      {/* ray test touch < */}
+      <form>
         <label htmlFor={USERNAME}>Change username: </label>
         <input
           name={USERNAME}
@@ -113,7 +138,8 @@ const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
           onClick={handleSubmit}>
           Submit
         </button>
-      </div>
+      </form>
+      {/* ray test touch > */}
       <div>
         <button onClick={onLoggedOut}>Logout</button>
       </div>

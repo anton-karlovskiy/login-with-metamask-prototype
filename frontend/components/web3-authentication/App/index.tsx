@@ -17,7 +17,7 @@ const App = (): JSX.Element => {
   const [state, setState] = React.useState<State>({});
 
   React.useEffect(() => {
-    // Access token is stored in local storage
+    // Access token is stored in the local storage
     const ls = window.localStorage.getItem(LS_KEY);
     const auth = ls && JSON.parse(ls);
     setState({ auth });
@@ -48,7 +48,7 @@ const App = (): JSX.Element => {
           'text-white'
         )}>
         <h1 className='text-2xl'>
-          Welcome to Login with MetaMask Demo
+          Welcome to Octav technical project
         </h1>
       </header>
       <div className='text-lg'>

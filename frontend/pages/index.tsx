@@ -1,4 +1,5 @@
 
+// ray test touch <
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
@@ -10,3 +11,4 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+// ray test touch >
