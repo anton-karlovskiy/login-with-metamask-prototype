@@ -115,9 +115,7 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
   return (
     <div>
       <p>
-        Please select your login method.
-        <br />
-        For the purpose of this demo, only MetaMask login is implemented.
+        Login to continue to your Octav account.
       </p>
       <button
         className={clsx(
