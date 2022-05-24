@@ -51,16 +51,8 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
   }) => {
     try {
       // ray test touch <<
-      const signature = await web3!.eth.personal.sign(
-        `${SIGN_MESSAGE_PREFIX}${nonce}`,
-        publicAddress,
-        '' // MetaMask will ignore the password argument here
-      );
-
       const signer = provider.getSigner();
-      const test = await signer.signMessage(`${SIGN_MESSAGE_PREFIX}${nonce}`);
-      console.log('ray : ***** signature => ', signature);
-      console.log('ray : ***** test => ', test);
+      const signature = await signer.signMessage(`${SIGN_MESSAGE_PREFIX}${nonce}`);
       // ray test touch >>
 
       return {
