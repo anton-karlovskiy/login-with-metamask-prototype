@@ -2,6 +2,7 @@
 import * as React from 'react';
 import jwtDecode from 'jwt-decode';
 
+import Button from 'components/Button';
 import { Auth } from '../types';
 
 interface Props {
@@ -140,7 +141,7 @@ const Profile = ({
       </form>
       {/* ray test touch > */}
       <div>
-        <button onClick={onLoggedOut}>Logout</button>
+        <Button onClick={onLoggedOut}>Logout</Button>
       </div>
     </div>
   );
