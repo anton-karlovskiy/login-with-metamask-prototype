@@ -12,10 +12,7 @@ import { WalletConnect } from '@web3-react/walletconnect';
 
 import Web3AuthApp from 'parts/Web3AuthApp';
 // ray test touch <
-import Accounts from 'containers/Accounts';
-import Status from 'containers/Status';
-import Chain from 'containers/Chain';
-import ConnectWithSelect from 'containers/ConnectWithSelect';
+import MetaMaskConnection from 'containers/MetaMaskConnection';
 // ray test touch >
 import ConnectorName from 'containers/ConnectorName';
 import {
@@ -48,26 +45,10 @@ const CONNECTORS: [
   [network, networkHooks]
 ];
 
-const {
-  useChainId,
-  useAccounts,
-  useError,
-  useIsActivating,
-  useIsActive,
-  useProvider,
-  useENSNames
-} = metaMaskHooks;
+const { useIsActive } = metaMaskHooks;
 
 const Home: NextPage = () => {
-  const chainId = useChainId();
-  const accounts = useAccounts();
-  const error = useError();
-  const isActivating = useIsActivating();
-
   const isActive = useIsActive();
-
-  const provider = useProvider();
-  const ENSNames = useENSNames(provider);
 
   // Attempt to connect eagerly on mount
   React.useEffect(() => {
@@ -78,26 +59,7 @@ const Home: NextPage = () => {
   return (
     <Web3ReactProvider connectors={CONNECTORS}>
       {/* ray test touch < */}
-      <div>
-        <b>MetaMask</b>
-        <Status
-          isActivating={isActivating}
-          error={error}
-          isActive={isActive} />
-        {/* TODO: could use tailwindcss */}
-        <div style={{ marginBottom: '1rem' }} />
-        <Chain chainId={chainId} />
-        <Accounts
-          accounts={accounts}
-          provider={provider}
-          ENSNames={ENSNames} />
-        <ConnectWithSelect
-          connector={metaMask}
-          chainId={chainId}
-          isActivating={isActivating}
-          error={error}
-          isActive={isActive} />
-      </div>
+      <MetaMaskConnection />
       {/* ray test touch > */}
       {isActive && <Web3AuthApp />}
       <ConnectorName />
