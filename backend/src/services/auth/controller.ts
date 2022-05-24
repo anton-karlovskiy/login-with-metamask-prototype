@@ -8,7 +8,10 @@ import {
 } from 'express';
 import jwt from 'jsonwebtoken';
 
-import { config } from '../../config';
+import {
+	JWT_SETTING,
+	SIGN_MESSAGE_PREFIX
+} from '../../config';
 import { User } from '../../models/user.model';
 
 export const create = (req: Request, res: Response, next: NextFunction) => {
@@ -48,7 +51,7 @@ export const create = (req: Request, res: Response, next: NextFunction) => {
 					);
 				}
 
-				const msg = `I am signing my one-time nonce: ${user.nonce}`;
+				const msg = `${SIGN_MESSAGE_PREFIX}${user.nonce}`;
 
 				// We now are in possession of msg, publicAddress and signature.
 				// We will use a helper from eth-sig-util to extract the address from the signature.
@@ -98,9 +101,9 @@ export const create = (req: Request, res: Response, next: NextFunction) => {
 								publicAddress
 							}
 						},
-						config.secret,
+						JWT_SETTING.secret,
 						{
-							algorithm: config.algorithms[0]
+							algorithm: JWT_SETTING.algorithms[0]
 						},
 						(error, token) => {
 							if (error) {

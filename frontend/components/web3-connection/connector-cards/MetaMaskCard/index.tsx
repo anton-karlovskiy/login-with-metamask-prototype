@@ -34,6 +34,7 @@ function MetaMaskCard() {
 
   // Attempt to connect eagerly on mount
   React.useEffect(() => {
+    // TODO: only set up MetaMask connection for now
     void metaMask.connectEagerly();
   }, []);
 

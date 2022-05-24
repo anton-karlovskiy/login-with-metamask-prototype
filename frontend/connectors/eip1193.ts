@@ -4,7 +4,7 @@ import { JsonRpcProvider } from '@ethersproject/providers';
 import { initializeConnector } from '@web3-react/core';
 import { EIP1193 } from '@web3-react/eip1193';
 
-import { URLS } from 'config/chains';
+import { URLS } from 'config/web3/chains';
 
 // TODO: not used for now
 class Eip1193BridgeWithoutAccounts extends Eip1193Bridge {

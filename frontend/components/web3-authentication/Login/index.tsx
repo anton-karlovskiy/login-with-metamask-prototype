@@ -4,6 +4,10 @@ import * as React from 'react';
 import Web3 from 'web3';
 import clsx from 'clsx';
 
+// ray test touch <<
+import { hooks } from 'connectors/meta-mask';
+import { SIGN_MESSAGE_PREFIX } from '../../../config';
+// ray test touch >>
 import { Auth } from '../types';
 
 interface Props {
@@ -13,6 +17,15 @@ interface Props {
 let web3: Web3 | undefined = undefined; // Will hold the web3 instance
 
 const Login = ({ onLoggedIn }: Props): JSX.Element => {
+  // ray test touch <<
+  const provider = hooks.useProvider();
+  if (provider === undefined) {
+    throw new Error('Something went wrong!');
+  }
+  console.log('ray : ***** provider.getSigner() => ', provider.getSigner());
+  // ray test touch >>
+
+  // TODO: should follow https://kentcdodds.com/blog/stop-using-isloading-booleans
   const [loading, setLoading] = React.useState(false); // Loading button state
 
   const handleAuthenticate = ({
@@ -38,17 +51,21 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
     nonce: string;
   }) => {
     try {
+      // ray test touch <<
       const signature = await web3!.eth.personal.sign(
-        `I am signing my one-time nonce: ${nonce}`,
+        `${SIGN_MESSAGE_PREFIX}${nonce}`,
         publicAddress,
         '' // MetaMask will ignore the password argument here
       );
+      console.log('ray : ***** signature => ', signature);
+      // ray test touch >>
 
-      return { publicAddress, signature };
-    } catch (err) {
-      throw new Error(
-        'You need to sign the message to be able to log in.'
-      );
+      return {
+        publicAddress,
+        signature
+      };
+    } catch (error) {
+      throw new Error('You need to sign the message to be able to log in.');
     }
   };
 
@@ -106,8 +123,8 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
       .then(handleAuthenticate)
     // Pass accessToken back to parent component (to save it in localStorage)
       .then(onLoggedIn)
-      .catch(err => {
-        window.alert(err);
+      .catch(error => {
+        window.alert(error);
         setLoading(false);
       });
   };

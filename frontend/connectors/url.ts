@@ -5,7 +5,7 @@ import { Url } from '@web3-react/url';
 import {
   URLS,
   ETHEREUM_MAINNET_CHAIN_ID
-} from 'config/chains';
+} from 'config/web3/chains';
 
 // TODO: not used for now
 export const [url, hooks] = initializeConnector<Url>(

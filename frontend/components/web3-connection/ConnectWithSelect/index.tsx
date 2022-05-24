@@ -12,7 +12,7 @@ import {
   getAddChainParameters,
   URLS,
   ETHEREUM_MAINNET_CHAIN_ID
-} from 'config/chains';
+} from 'config/web3/chains';
 
 const INVALID_CHAIN_ID = -1;
 

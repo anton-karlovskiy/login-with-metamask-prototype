@@ -5,7 +5,7 @@ import { initializeConnector } from '@web3-react/core';
 import {
   URLS,
   ETHEREUM_MAINNET_CHAIN_ID
-} from 'config/chains';
+} from 'config/web3/chains';
 
 export const [coinbaseWallet, hooks] = initializeConnector<CoinbaseWallet>(
   actions =>
