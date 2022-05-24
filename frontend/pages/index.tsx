@@ -11,11 +11,13 @@ import { Network } from '@web3-react/network';
 import { WalletConnect } from '@web3-react/walletconnect';
 
 import Web3AuthApp from 'parts/Web3AuthApp';
+// ray test touch <
+import Accounts from 'containers/Accounts';
+import Status from 'containers/Status';
+import Chain from 'containers/Chain';
+import ConnectWithSelect from 'containers/ConnectWithSelect';
+// ray test touch >
 import ConnectorName from 'containers/ConnectorName';
-import Accounts from 'parts/Web3ConnectionApp/Accounts';
-import Status from 'parts/Web3ConnectionApp/Status';
-import Chain from 'parts/Web3ConnectionApp/Chain';
-import ConnectWithSelect from 'parts/Web3ConnectionApp/ConnectWithSelect';
 import {
   hooks as coinbaseWalletHooks,
   coinbaseWallet
