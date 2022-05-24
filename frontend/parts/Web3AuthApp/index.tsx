@@ -1,5 +1,4 @@
 
-// ray test touch <
 import * as React from 'react';
 import clsx from 'clsx';
 
@@ -65,4 +64,3 @@ const Web3AuthApp = (): JSX.Element => {
 };
 
 export default Web3AuthApp;
-// ray test touch >

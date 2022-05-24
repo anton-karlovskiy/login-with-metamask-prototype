@@ -1,5 +1,4 @@
 
-// ray test touch <
 import * as React from 'react';
 import jwtDecode from 'jwt-decode';
 
@@ -148,4 +147,3 @@ const Profile = ({
 };
 
 export default Profile;
-// ray test touch >

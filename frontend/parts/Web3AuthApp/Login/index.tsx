@@ -1,5 +1,4 @@
 
-// ray test touch <
 import * as React from 'react';
 import clsx from 'clsx';
 
@@ -118,4 +117,3 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
 };
 
 export default Login;
-// ray test touch >

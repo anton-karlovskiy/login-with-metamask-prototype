@@ -1,5 +1,4 @@
 
-// ray test touch <
 import ProviderExample from './ProviderExample';
 import MetaMaskCard from './connector-cards/MetaMaskCard';
 import WalletConnectCard from './connector-cards/WalletConnectCard';
@@ -29,4 +28,3 @@ const Web3ConnectionApp = () => {
 };
 
 export default Web3ConnectionApp;
-// ray test touch >
