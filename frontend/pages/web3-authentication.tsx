@@ -1,9 +1,6 @@
 
-// ray test touch <<
 import * as React from 'react';
-// ray test touch >>
 import type { NextPage } from 'next';
-// ray test touch <<
 import { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import {
   Web3ReactHooks,
@@ -12,10 +9,8 @@ import {
 import { MetaMask } from '@web3-react/metamask';
 import { Network } from '@web3-react/network';
 import { WalletConnect } from '@web3-react/walletconnect';
-// ray test touch >>
 
 import App from 'components/web3-authentication/App';
-// ray test touch <<
 import ConnectorName from 'containers/ConnectorName';
 import Accounts from 'components/web3-connection/Accounts';
 import Status from 'components/web3-connection/Status';
@@ -45,7 +40,6 @@ const CONNECTORS: [
   Network,
   Web3ReactHooks
 ][] = [
-  // TODO: only support MetaMask wallet for now
   [metaMask, metaMaskHooks],
   [walletConnect, walletConnectHooks],
   [coinbaseWallet, coinbaseWalletHooks],
@@ -61,10 +55,8 @@ const {
   useProvider,
   useENSNames
 } = metaMaskHooks;
-// ray test touch >>
 
 const Web3Authentication: NextPage = () => {
-  // ray test touch <<
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -77,13 +69,13 @@ const Web3Authentication: NextPage = () => {
 
   // Attempt to connect eagerly on mount
   React.useEffect(() => {
+    // TODO: only set up MetaMask connection for now
     void metaMask.connectEagerly();
   }, []);
-  // ray test touch >>
 
   return (
-    // ray test touch <<
     <Web3ReactProvider connectors={CONNECTORS}>
+      {/* ray test touch < */}
       <div>
         <b>MetaMask</b>
         <Status
@@ -104,10 +96,10 @@ const Web3Authentication: NextPage = () => {
           error={error}
           isActive={isActive} />
       </div>
+      {/* ray test touch > */}
       {isActive && <App />}
       <ConnectorName />
     </Web3ReactProvider>
-    // ray test touch >>
   );
 };
 

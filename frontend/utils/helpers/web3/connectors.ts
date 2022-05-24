@@ -1,5 +1,4 @@
 
-// ray test touch <<
 import type { Connector } from '@web3-react/types';
 import { MetaMask } from '@web3-react/metamask';
 import { WalletConnect } from '@web3-react/walletconnect';
@@ -18,4 +17,3 @@ function getName(connector: Connector) {
 export {
   getName
 };
-// ray test touch >>

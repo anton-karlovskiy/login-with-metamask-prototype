@@ -3,10 +3,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-// ray test touch <<
 import { hooks } from 'connectors/meta-mask';
 import { SIGN_MESSAGE_PREFIX } from 'config';
-// ray test touch >>
 import { Auth } from '../types';
 
 interface Props {
@@ -14,7 +12,6 @@ interface Props {
 }
 
 const Login = ({ onLoggedIn }: Props): JSX.Element => {
-  // ray test touch <<
   const provider = hooks.useProvider();
   if (provider === undefined) {
     throw new Error('Something went wrong!');
@@ -23,7 +20,6 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
   if (account === undefined) {
     throw new Error('Something went wrong!');
   }
-  // ray test touch >>
 
   // TODO: should follow https://kentcdodds.com/blog/stop-using-isloading-booleans
   const [loading, setLoading] = React.useState(false); // Loading button state
@@ -51,10 +47,8 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
     nonce: string;
   }) => {
     try {
-      // ray test touch <<
       const signer = provider.getSigner();
       const signature = await signer.signMessage(`${SIGN_MESSAGE_PREFIX}${nonce}`);
-      // ray test touch >>
 
       return {
         publicAddress,

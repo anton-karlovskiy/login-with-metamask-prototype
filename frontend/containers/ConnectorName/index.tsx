@@ -1,5 +1,4 @@
 
-// ray test touch <<
 import { useWeb3React } from '@web3-react/core';
 import { getName } from 'utils/helpers/web3/connectors';
 
@@ -11,4 +10,3 @@ function ConnectorName() {
 }
 
 export default ConnectorName;
-// ray test touch >>
