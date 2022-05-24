@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 // ray test touch <<
 import { hooks } from 'connectors/meta-mask';
-import { SIGN_MESSAGE_PREFIX } from '../../../config';
+import { SIGN_MESSAGE_PREFIX } from 'config';
 // ray test touch >>
 import { Auth } from '../types';
 
@@ -22,7 +22,6 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
   if (provider === undefined) {
     throw new Error('Something went wrong!');
   }
-  console.log('ray : ***** provider.getSigner() => ', provider.getSigner());
   // ray test touch >>
 
   // TODO: should follow https://kentcdodds.com/blog/stop-using-isloading-booleans
@@ -57,7 +56,11 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
         publicAddress,
         '' // MetaMask will ignore the password argument here
       );
+
+      const signer = provider.getSigner();
+      const test = await signer.signMessage(`${SIGN_MESSAGE_PREFIX}${nonce}`);
       console.log('ray : ***** signature => ', signature);
+      console.log('ray : ***** test => ', test);
       // ray test touch >>
 
       return {
