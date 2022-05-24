@@ -10,7 +10,7 @@ import { MetaMask } from '@web3-react/metamask';
 import { Network } from '@web3-react/network';
 import { WalletConnect } from '@web3-react/walletconnect';
 
-import App from 'components/web3-authentication/App';
+import Web3AuthApp from 'components/web3-authentication/Web3AuthApp';
 import ConnectorName from 'containers/ConnectorName';
 import Accounts from 'components/web3-connection/Accounts';
 import Status from 'components/web3-connection/Status';
@@ -97,7 +97,7 @@ const Web3Authentication: NextPage = () => {
           isActive={isActive} />
       </div>
       {/* ray test touch > */}
-      {isActive && <App />}
+      {isActive && <Web3AuthApp />}
       <ConnectorName />
     </Web3ReactProvider>
   );

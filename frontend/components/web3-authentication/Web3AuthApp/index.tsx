@@ -13,7 +13,7 @@ interface State {
   auth?: Auth;
 }
 
-const App = (): JSX.Element => {
+const Web3AuthApp = (): JSX.Element => {
   const [state, setState] = React.useState<State>({});
 
   React.useEffect(() => {
@@ -64,5 +64,5 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
+export default Web3AuthApp;
 // ray test touch >
