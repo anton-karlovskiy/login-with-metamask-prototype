@@ -2,14 +2,14 @@
 import * as React from 'react';
 
 import {
-  coinbaseWallet,
-  hooks
-} from 'connectors/coinbase-wallet';
-import Accounts from '../Accounts';
-import Card from '../Card';
-import Chain from '../Chain';
-import ConnectWithSelect from '../ConnectWithSelect';
-import Status from '../Status';
+  hooks,
+  metaMask
+} from 'connectors/meta-mask';
+import Accounts from '../../Accounts';
+import Card from '../../Card';
+import Chain from '../../Chain';
+import ConnectWithSelect from '../../ConnectWithSelect';
+import Status from '../../Status';
 
 const {
   useChainId,
@@ -21,7 +21,7 @@ const {
   useENSNames
 } = hooks;
 
-function CoinbaseWalletCard() {
+function MetaMaskCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -34,17 +34,18 @@ function CoinbaseWalletCard() {
 
   // Attempt to connect eagerly on mount
   React.useEffect(() => {
-    void coinbaseWallet.connectEagerly();
+    void metaMask.connectEagerly();
   }, []);
 
   return (
     <Card>
       <div>
-        <b>Coinbase Wallet</b>
+        <b>MetaMask</b>
         <Status
           isActivating={isActivating}
           error={error}
           isActive={isActive} />
+        {/* TODO: could use tailwindcss */}
         <div style={{ marginBottom: '1rem' }} />
         <Chain chainId={chainId} />
         <Accounts
@@ -52,9 +53,10 @@ function CoinbaseWalletCard() {
           provider={provider}
           ENSNames={ENSNames} />
       </div>
+      {/* TODO: could use tailwindcss */}
       <div style={{ marginBottom: '1rem' }} />
       <ConnectWithSelect
-        connector={coinbaseWallet}
+        connector={metaMask}
         chainId={chainId}
         isActivating={isActivating}
         error={error}
@@ -63,4 +65,4 @@ function CoinbaseWalletCard() {
   );
 }
 
-export default CoinbaseWalletCard;
+export default MetaMaskCard;
