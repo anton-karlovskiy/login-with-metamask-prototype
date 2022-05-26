@@ -38,3 +38,4 @@ yarn start
 ## Notes
 
 - Responsive UI
+- For now, Only MetaMask is enabled, but other prominent wallets have already been configured and ready to be used after some touches.
