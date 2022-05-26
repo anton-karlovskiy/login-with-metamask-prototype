@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import Accounts from './Accounts';
 import Status from './Status';
 import Chain from './Chain';
-import ConnectWithSelect from './ConnectWithSelect';
+import ConnectWalletUI from './ConnectWalletUI';
 import {
   hooks,
   metaMask
@@ -39,7 +39,7 @@ const MetaMaskConnection = () => {
         accounts={accounts}
         provider={provider}
         ENSNames={ENSNames} />
-      <ConnectWithSelect
+      <ConnectWalletUI
         connector={metaMask}
         chainId={chainId}
         isActivating={isActivating}

@@ -14,7 +14,7 @@ interface Props {
   isActive: ReturnType<Web3ReactHooks['useIsActive']>;
 }
 
-function ConnectWithSelect({
+function ConnectWalletUI({
   connector,
   chainId,
   isActivating,
@@ -52,5 +52,5 @@ function ConnectWithSelect({
   }
 }
 
-export default ConnectWithSelect;
+export default ConnectWalletUI;
 // ray test touch >>
