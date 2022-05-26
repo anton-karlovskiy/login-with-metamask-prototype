@@ -4,6 +4,8 @@ import * as React from 'react';
 import type { Web3ReactHooks } from '@web3-react/core';
 import type { MetaMask } from '@web3-react/metamask';
 
+import Button from 'components/Button';
+
 interface Props {
   connector: MetaMask;
   chainId: ReturnType<Web3ReactHooks['useChainId']>;
@@ -21,17 +23,9 @@ function ConnectWithSelect({
 }: Props) {
   if (error) {
     return (
-      <div
-        // TODO: could use tailwindcss
-        style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-        <button
-          onClick={() => void connector.activate(undefined)}>
-          Try Again?
-        </button>
-      </div>
+      <Button onClick={() => void connector.activate(undefined)}>
+        Try Again?
+      </Button>
     );
   } else if (isActive) {
     if (chainId === undefined) {
@@ -39,33 +33,21 @@ function ConnectWithSelect({
     }
 
     return (
-      <div
-        // TODO: could use tailwindcss
-        style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-        <button onClick={() => void connector.deactivate()}>Disconnect</button>
-      </div>
+      <Button onClick={() => void connector.deactivate()}>
+        Disconnect
+      </Button>
     );
   } else {
     return (
-      <div
-        // TODO: could use tailwindcss
-        style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-        <button
-          onClick={
-            isActivating ?
-              undefined :
-              () => void connector.activate(undefined)
-          }
-          disabled={isActivating}>
-          Connect
-        </button>
-      </div>
+      <Button
+        onClick={
+          isActivating ?
+            undefined :
+            () => void connector.activate(undefined)
+        }
+        disabled={isActivating}>
+        Connect
+      </Button>
     );
   }
 }
