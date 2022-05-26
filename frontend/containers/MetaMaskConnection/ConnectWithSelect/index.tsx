@@ -1,18 +1,12 @@
 
 // ray test touch <<
 import * as React from 'react';
-import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import type { Web3ReactHooks } from '@web3-react/core';
-import { GnosisSafe } from '@web3-react/gnosis-safe';
 import type { MetaMask } from '@web3-react/metamask';
-import { Network } from '@web3-react/network';
-import { WalletConnect } from '@web3-react/walletconnect';
 
 import {
   CHAINS,
-  getAddChainParameters,
-  URLS,
-  ETHEREUM_MAINNET_CHAIN_ID
+  getAddChainParameters
 } from 'config/web3/chains';
 
 const INVALID_CHAIN_ID = -1;
@@ -48,7 +42,7 @@ function ChainSelect({
 }
 
 interface Props {
-  connector: MetaMask | WalletConnect | CoinbaseWallet | Network | GnosisSafe;
+  connector: MetaMask;
   chainId: ReturnType<Web3ReactHooks['useChainId']>;
   isActivating: ReturnType<Web3ReactHooks['useIsActivating']>;
   error: ReturnType<Web3ReactHooks['useError']>;
@@ -62,15 +56,12 @@ function ConnectWithSelect({
   error,
   isActive
 }: Props) {
-  const isNetwork = connector instanceof Network;
-  const displayDefault = !isNetwork;
-  const chainIds = (isNetwork ? Object.keys(URLS) : Object.keys(CHAINS)).map(chainId => Number(chainId));
+  // ray test touch <<
+  const displayDefault = true;
+  // ray test touch >>
+  const chainIds = Object.keys(CHAINS).map(chainId => Number(chainId));
 
-  const [desiredChainId, setDesiredChainId] = React.useState<number>(
-    isNetwork ?
-      ETHEREUM_MAINNET_CHAIN_ID :
-      INVALID_CHAIN_ID
-  );
+  const [desiredChainId, setDesiredChainId] = React.useState<number>(INVALID_CHAIN_ID);
 
   const switchChain = React.useCallback(
     async (desiredChainId: number) => {
@@ -80,15 +71,11 @@ function ConnectWithSelect({
       // If they want to connect to the default chain and we're already connected, return
       if (desiredChainId === INVALID_CHAIN_ID && chainId !== undefined) return;
 
-      if (connector instanceof WalletConnect || connector instanceof Network) {
-        await connector.activate(desiredChainId === INVALID_CHAIN_ID ? undefined : desiredChainId);
-      } else {
-        await connector.activate(
-          desiredChainId === INVALID_CHAIN_ID ?
-            undefined :
-            getAddChainParameters(desiredChainId)
-        );
-      }
+      await connector.activate(
+        desiredChainId === INVALID_CHAIN_ID ?
+          undefined :
+          getAddChainParameters(desiredChainId)
+      );
     },
     [
       connector,
@@ -104,27 +91,23 @@ function ConnectWithSelect({
           display: 'flex',
           flexDirection: 'column'
         }}>
-        {!(connector instanceof GnosisSafe) && (
-          <ChainSelect
-            chainId={desiredChainId}
-            switchChain={switchChain}
-            displayDefault={displayDefault}
-            chainIds={chainIds} />
-        )}
+        {/* ray test touch << */}
+        <ChainSelect
+          chainId={desiredChainId}
+          switchChain={switchChain}
+          displayDefault={displayDefault}
+          chainIds={chainIds} />
+        {/* ray test touch >> */}
         {/* TODO: could use tailwindcss */}
         <div style={{ marginBottom: '1rem' }} />
         <button
-          onClick={() =>
-            connector instanceof GnosisSafe ?
-              void connector.activate() :
-              connector instanceof WalletConnect || connector instanceof Network ?
-                void connector.activate(desiredChainId === INVALID_CHAIN_ID ? undefined : desiredChainId) :
-                void connector.activate(
-                  desiredChainId === INVALID_CHAIN_ID ?
-                    undefined :
-                    getAddChainParameters(desiredChainId)
-                )
-          }>
+          onClick={() => {
+            connector.activate(
+              desiredChainId === INVALID_CHAIN_ID ?
+                undefined :
+                getAddChainParameters(desiredChainId)
+            );
+          }}>
           Try Again?
         </button>
       </div>
@@ -141,13 +124,13 @@ function ConnectWithSelect({
           display: 'flex',
           flexDirection: 'column'
         }}>
-        {!(connector instanceof GnosisSafe) && (
-          <ChainSelect
-            chainId={desiredChainId === INVALID_CHAIN_ID ? INVALID_CHAIN_ID : chainId}
-            switchChain={switchChain}
-            displayDefault={displayDefault}
-            chainIds={chainIds} />
-        )}
+        {/* ray test touch << */}
+        <ChainSelect
+          chainId={desiredChainId === INVALID_CHAIN_ID ? INVALID_CHAIN_ID : chainId}
+          switchChain={switchChain}
+          displayDefault={displayDefault}
+          chainIds={chainIds} />
+        {/* ray test touch >> */}
         {/* TODO: could use tailwindcss */}
         <div style={{ marginBottom: '1rem' }} />
         <button onClick={() => void connector.deactivate()}>Disconnect</button>
@@ -161,29 +144,26 @@ function ConnectWithSelect({
           display: 'flex',
           flexDirection: 'column'
         }}>
-        {!(connector instanceof GnosisSafe) && (
-          <ChainSelect
-            chainId={desiredChainId}
-            switchChain={isActivating ? undefined : switchChain}
-            displayDefault={displayDefault}
-            chainIds={chainIds} />
-        )}
+        {/* ray test touch << */}
+        <ChainSelect
+          chainId={desiredChainId}
+          switchChain={isActivating ? undefined : switchChain}
+          displayDefault={displayDefault}
+          chainIds={chainIds} />
+        {/* ray test touch >> */}
         {/* TODO: could use tailwindcss */}
         <div style={{ marginBottom: '1rem' }} />
         <button
           onClick={
             isActivating ?
               undefined :
-              () =>
-                connector instanceof GnosisSafe ?
-                  void connector.activate() :
-                  connector instanceof WalletConnect || connector instanceof Network ?
-                    connector.activate(desiredChainId === INVALID_CHAIN_ID ? undefined : desiredChainId) :
-                    connector.activate(
-                      desiredChainId === INVALID_CHAIN_ID ?
-                        undefined :
-                        getAddChainParameters(desiredChainId)
-                    )
+              () => {
+                connector.activate(
+                  desiredChainId === INVALID_CHAIN_ID ?
+                    undefined :
+                    getAddChainParameters(desiredChainId)
+                );
+              }
           }
           disabled={isActivating}>
           Connect
