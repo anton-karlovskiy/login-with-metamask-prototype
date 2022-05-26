@@ -1,5 +1,7 @@
 
 // ray test touch <<
+import clsx from 'clsx';
+
 import Accounts from './Accounts';
 import Status from './Status';
 import Chain from './Chain';
@@ -21,7 +23,12 @@ const MetaMaskConnection = () => {
   const ENSNames = hooks.useENSNames(provider);
 
   return (
-    <div>
+    <div
+      className={clsx(
+        'bg-blue-900',
+        'p-5',
+        'text-white'
+      )}>
       <b>MetaMask</b>
       <Status
         isActivating={isActivating}
