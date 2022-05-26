@@ -1,5 +1,4 @@
 
-// ray test touch <<
 import * as React from 'react';
 import type { Web3ReactHooks } from '@web3-react/core';
 import type { MetaMask } from '@web3-react/metamask';
@@ -53,4 +52,3 @@ function ConnectWalletUI({
 }
 
 export default ConnectWalletUI;
-// ray test touch >>
