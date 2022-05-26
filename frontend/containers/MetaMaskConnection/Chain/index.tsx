@@ -1,5 +1,4 @@
 
-// ray test touch <<
 import type { Web3ReactHooks } from '@web3-react/core';
 
 import { CHAINS } from 'config/web3/chains';
@@ -15,8 +14,8 @@ function Chain({ chainId }: Props) {
 
   if (name) {
     return (
-      <div>
-        Chain:{' '}
+      <div className='space-x-1'>
+        <span>Chain:</span>
         <b>
           {name} ({chainId})
         </b>
@@ -32,4 +31,3 @@ function Chain({ chainId }: Props) {
 }
 
 export default Chain;
-// ray test touch >>

@@ -1,5 +1,4 @@
 
-// ray test touch <<
 import clsx from 'clsx';
 
 import Accounts from './Accounts';
@@ -41,7 +40,7 @@ const MetaMaskConnection = () => {
           'items-center',
           'justify-between'
         )}>
-        <b>MetaMask</b>
+        <strong>MetaMask</strong>
         <Status
           isActivating={isActivating}
           error={error}
@@ -63,4 +62,3 @@ const MetaMaskConnection = () => {
 };
 
 export default MetaMaskConnection;
-// ray test touch >>

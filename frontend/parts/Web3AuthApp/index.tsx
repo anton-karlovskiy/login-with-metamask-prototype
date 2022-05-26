@@ -50,7 +50,11 @@ const Web3AuthApp = (): JSX.Element => {
           Welcome to Octav technical project
         </h1>
       </header>
-      <div className='text-lg'>
+      <div
+        className={clsx(
+          'text-lg',
+          'p-4'
+        )}>
         {auth ? (
           <Profile
             auth={auth}
