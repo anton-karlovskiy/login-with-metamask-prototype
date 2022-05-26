@@ -27,8 +27,6 @@ function ConnectWithSelect({
           display: 'flex',
           flexDirection: 'column'
         }}>
-        {/* TODO: could use tailwindcss */}
-        <div style={{ marginBottom: '1rem' }} />
         <button
           onClick={() => void connector.activate(undefined)}>
           Try Again?
@@ -47,8 +45,6 @@ function ConnectWithSelect({
           display: 'flex',
           flexDirection: 'column'
         }}>
-        {/* TODO: could use tailwindcss */}
-        <div style={{ marginBottom: '1rem' }} />
         <button onClick={() => void connector.deactivate()}>Disconnect</button>
       </div>
     );
@@ -60,8 +56,6 @@ function ConnectWithSelect({
           display: 'flex',
           flexDirection: 'column'
         }}>
-        {/* TODO: could use tailwindcss */}
-        <div style={{ marginBottom: '1rem' }} />
         <button
           onClick={
             isActivating ?
