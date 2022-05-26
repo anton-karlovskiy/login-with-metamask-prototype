@@ -136,16 +136,22 @@ const Profile = ({
         </p>
       </div>
       {/* ray test touch < */}
-      <form>
+      <form
+        className={clsx(
+          'inline-flex',
+          'items-center',
+          'space-x-4'
+        )}>
         <label htmlFor={USERNAME}>Change username: </label>
         <input
+          type='text'
           name={USERNAME}
           onChange={handleChange} />
-        <button
+        <Button
           disabled={loading}
           onClick={handleSubmit}>
           Submit
-        </button>
+        </Button>
       </form>
       {/* ray test touch > */}
       <div>

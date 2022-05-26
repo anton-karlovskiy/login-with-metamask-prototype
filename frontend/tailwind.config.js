@@ -1,3 +1,4 @@
+
 module.exports = {
   content: [
     './utils/constants/styles.ts',
@@ -9,5 +10,5 @@ module.exports = {
   theme: {
     extend: {}
   },
-  plugins: []
+  plugins: [require('@tailwindcss/forms')]
 };
