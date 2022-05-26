@@ -17,7 +17,9 @@ interface State {
     id: number;
     username: string;
   };
+  // ray test touch <
   username: string;
+  // ray test touch >
 }
 
 interface JwtDecoded {
@@ -36,7 +38,9 @@ const Profile = ({
   const [state, setState] = React.useState<State>({
     loading: false,
     user: undefined,
+    // ray test touch <
     username: ''
+    // ray test touch >
   });
 
   const { accessToken } = auth;
@@ -58,14 +62,21 @@ const Profile = ({
       .catch(window.alert);
   }, [accessToken]);
 
-  const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+  // ray test touch <
+  const handleChange = ({
+    target: { value }
+  }: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, username: value });
   };
+  // ray test touch >
 
+  // ray test touch <
   const handleSubmit = () => {
     const {
       user,
+      // ray test touch <
       username
+      // ray test touch >
     } = state;
 
     setState(previous => ({
@@ -97,6 +108,7 @@ const Profile = ({
         setState(previous => ({ ...previous, loading: false }));
       });
   };
+  // ray test touch >
 
   const {
     payload: { publicAddress }
@@ -123,6 +135,7 @@ const Profile = ({
           My publicAddress is <strong>{publicAddress}</strong>
         </p>
       </div>
+      {/* ray test touch < */}
       <form
         className={clsx(
           'inline-flex',
@@ -140,6 +153,7 @@ const Profile = ({
           Submit
         </Button>
       </form>
+      {/* ray test touch > */}
       <div>
         <Button onClick={onLoggedOut}>Logout</Button>
       </div>
