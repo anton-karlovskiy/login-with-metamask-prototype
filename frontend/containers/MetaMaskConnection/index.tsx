@@ -1,9 +1,10 @@
 
-// ray test touch <<
+import clsx from 'clsx';
+
 import Accounts from './Accounts';
 import Status from './Status';
 import Chain from './Chain';
-import ConnectWithSelect from './ConnectWithSelect';
+import ConnectWalletUI from './ConnectWalletUI';
 import {
   hooks,
   metaMask
@@ -21,26 +22,43 @@ const MetaMaskConnection = () => {
   const ENSNames = hooks.useENSNames(provider);
 
   return (
-    <div>
-      <b>MetaMask</b>
-      <Status
-        isActivating={isActivating}
-        error={error}
-        isActive={isActive} />
-      <Chain chainId={chainId} />
+    <div
+      className={clsx(
+        'bg-blue-900',
+        'p-5',
+        'text-white',
+        'space-y-4'
+      )}>
+      <div
+        className={clsx(
+          'flex',
+          'flex-col',
+          'space-y-4',
+          'sm:flex-row',
+          'sm:space-x-4',
+          'sm:space-y-0',
+          'items-center',
+          'justify-between'
+        )}>
+        <strong>MetaMask</strong>
+        <Status
+          isActivating={isActivating}
+          error={error}
+          isActive={isActive} />
+        <Chain chainId={chainId} />
+        <ConnectWalletUI
+          connector={metaMask}
+          chainId={chainId}
+          isActivating={isActivating}
+          error={error}
+          isActive={isActive} />
+      </div>
       <Accounts
         accounts={accounts}
         provider={provider}
         ENSNames={ENSNames} />
-      <ConnectWithSelect
-        connector={metaMask}
-        chainId={chainId}
-        isActivating={isActivating}
-        error={error}
-        isActive={isActive} />
     </div>
   );
 };
 
 export default MetaMaskConnection;
-// ray test touch >>

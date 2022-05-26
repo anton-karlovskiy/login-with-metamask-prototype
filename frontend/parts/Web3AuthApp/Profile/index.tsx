@@ -1,6 +1,7 @@
 
 import * as React from 'react';
 import jwtDecode from 'jwt-decode';
+import clsx from 'clsx';
 
 import Button from 'components/Button';
 import { Auth } from '../types';
@@ -122,10 +123,17 @@ const Profile = ({
 
   return (
     <div className='space-y-4'>
-      <div>
-        My username is {username ? <pre className='inline'>{username}</pre> : 'not set.'}
-        <br />
-        My publicAddress is <pre className='inline'>{publicAddress}</pre>
+      <div className='space-y-2'>
+        <p>
+          My username is {username ? <strong>{username}</strong> : 'not set.'}
+        </p>
+        <p
+          className={clsx(
+            'overflow-hidden',
+            'truncate'
+          )}>
+          My publicAddress is <strong>{publicAddress}</strong>
+        </p>
       </div>
       {/* ray test touch < */}
       <form>

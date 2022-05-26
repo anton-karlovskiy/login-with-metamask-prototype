@@ -10,10 +10,14 @@ const Button = ({
       className={clsx(
         'text-white',
         'text-base',
-        'w-72',
-        'h-14',
+        'w-36',
+        'min-w-max',
+        'h-10',
         'bg-yellow-500',
         'hover:bg-opacity-90',
+        'rounded-lg',
+        'px-4',
+        'py-2',
         className
       )}
       {...rest} />

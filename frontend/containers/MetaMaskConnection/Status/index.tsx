@@ -1,5 +1,4 @@
 
-// ray test touch <<
 import type { Web3ReactHooks } from '@web3-react/core';
 
 interface Props {
@@ -32,4 +31,3 @@ function Status({
 }
 
 export default Status;
-// ray test touch >>

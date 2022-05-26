@@ -1,9 +1,9 @@
 
-// ray test touch <<
 import * as React from 'react';
 import type { BigNumber } from '@ethersproject/bignumber';
 import { formatEther } from '@ethersproject/units';
 import type { Web3ReactHooks } from '@web3-react/core';
+import clsx from 'clsx';
 
 function useBalances(
   provider?: ReturnType<Web3ReactHooks['useProvider']>,
@@ -49,28 +49,28 @@ function Accounts({
   if (accounts === undefined) return null;
 
   return (
-    <div>
-      Accounts:{' '}
-      <b>
+    <div
+      className={clsx(
+        'space-x-1',
+        'flex',
+        'items-center',
+        'h-10',
+        'overflow-hidden',
+        'truncate'
+      )}>
+      <span>Accounts:</span>
+      <strong>
         {accounts.length === 0 ?
           'None' :
           accounts.map((account, index) => (
-            <ul
-              key={account}
-              // TODO: could use tailwindcss
-              style={{
-                margin: 0,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis'
-              }}>
+            <ul key={account}>
               {ENSNames?.[index] ?? account}
               {balances?.[index] ? ` (Ξ${formatEther(balances[index])})` : null}
             </ul>
           ))}
-      </b>
+      </strong>
     </div>
   );
 }
 
 export default Accounts;
-// ray test touch >>
