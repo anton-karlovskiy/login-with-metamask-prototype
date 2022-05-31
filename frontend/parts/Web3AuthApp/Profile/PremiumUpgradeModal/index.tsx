@@ -2,6 +2,7 @@
 // ray test touch <
 import clsx from 'clsx';
 
+import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import OctavModal, {
   OctavModalTitle,
   OctavModalInnerWrapper,
@@ -16,49 +17,27 @@ const PremiumUpgradeModal = ({
     <OctavModal
       open={open}
       onClose={onClose}>
-      <OctavModalInnerWrapper className='max-w-lg'>
+      <OctavModalInnerWrapper
+        className={clsx(
+          'max-w-lg',
+          'space-y-4'
+        )}>
         <OctavModalTitle
           className={clsx(
             'text-lg',
-            'font-medium',
-            'mb-6'
+            'font-medium'
           )}>
-          Payment successful
+          Hi
         </OctavModalTitle>
-        <div className='mt-2'>
-          <p
-            className={clsx(
-              'text-sm',
-              'text-gray-500'
-            )}>
-            Your payment has been successfully submitted. We’ve sent your
-            an email with all of the details of your order.
+        <div>
+          <p className='text-sm'>
+            Icy Premium is the edge you&apos;re looking for. Get the latest alpha and never FOMO into a project again.
           </p>
         </div>
-        <div className='mt-4'>
-          <button
-            type='button'
-            className={clsx(
-              'inline-flex',
-              'justify-center',
-              'px-4',
-              'py-2',
-              'text-sm',
-              'font-medium',
-              'text-blue-900',
-              'bg-blue-100',
-              'border',
-              'border-transparent',
-              'rounded-md',
-              'hover:bg-blue-200',
-              'focus:outline-none',
-              'focus-visible:ring-2',
-              'focus-visible:ring-offset-2',
-              'focus-visible:ring-blue-500'
-            )}
-            onClick={onClose}>
+        <div>
+          <OctavYellowContainedButton onClick={onClose}>
             Got it, thanks!
-          </button>
+          </OctavYellowContainedButton>
         </div>
       </OctavModalInnerWrapper>
     </OctavModal>
