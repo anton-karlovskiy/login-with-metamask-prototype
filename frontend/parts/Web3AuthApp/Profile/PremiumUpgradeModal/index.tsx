@@ -1,8 +1,6 @@
 
 import clsx from 'clsx';
-// ray test touch <
 import { parseEther } from '@ethersproject/units';
-// ray test touch >
 
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import OctavModal, {
@@ -10,20 +8,17 @@ import OctavModal, {
   OctavModalInnerWrapper,
   OctavModalProps
 } from 'components/UI/OctavModal';
-// ray test touch <
 import { hooks } from 'connectors/meta-mask';
 import {
   PREMIUM_PRICE_IN_ETH,
   PREMIUM_PAYMENT_ADDRESS
 } from 'config';
 import shortenAddress from 'utils/helpers/shorten-address';
-// ray test touch >
 
 const PremiumUpgradeModal = ({
   open,
   onClose
 }: Props) => {
-  // ray test touch <
   const provider = hooks.useProvider();
   if (provider === undefined) {
     throw new Error('Something went wrong!');
@@ -52,7 +47,6 @@ const PremiumUpgradeModal = ({
       window.alert(error.message);
     }
   };
-  // ray test touch >
 
   return (
     <OctavModal

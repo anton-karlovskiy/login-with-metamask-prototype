@@ -1,5 +1,4 @@
 
-// ray test touch <
 import { isAddress } from '@ethersproject/address';
 
 // TODO: double-check
@@ -13,4 +12,3 @@ const shortenAddress = (address: string): string => {
 };
 
 export default shortenAddress;
-// ray test touch >
