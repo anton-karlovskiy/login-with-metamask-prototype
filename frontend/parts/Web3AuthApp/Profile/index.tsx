@@ -44,9 +44,7 @@ const Profile = ({
   React.useEffect(() => {
     if (!accessToken) return;
 
-    const {
-      payload: { id }
-    } = jwtDecode<JwtDecoded>(accessToken);
+    const { payload: { id } } = jwtDecode<JwtDecoded>(accessToken);
 
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
       headers: {
@@ -97,7 +95,10 @@ const Profile = ({
       .then(user => setState(previous => ({ ...previous, loading: false, user })))
       .catch(error => {
         window.alert(error);
-        setState(previous => ({ ...previous, loading: false }));
+        setState(previous => ({
+          ...previous,
+          loading: false
+        }));
       });
   };
 
