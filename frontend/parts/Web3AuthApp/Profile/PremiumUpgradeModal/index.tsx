@@ -54,9 +54,7 @@ const PremiumUpgradeModal = ({
       });
       await tx.wait();
 
-      // ray test touch <
       await updatePremiumAtDB();
-      // ray test touch >
 
       setSubmitStatus(STATUSES.RESOLVED);
     } catch (error: any) {
@@ -65,24 +63,18 @@ const PremiumUpgradeModal = ({
     }
   };
 
-  // ray test touch <
   const updatePremiumAtDB = async () => {
-    try {
-      const { payload: { id } } = jwtDecode<JwtDecoded>(accessToken);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
-        body: JSON.stringify({ premium: true }),
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
-        },
-        method: 'PATCH'
-      });
-      await response.json();
-    } catch (error: any) {
-      window.alert(error.message);
-    }
+    const { payload: { id } } = jwtDecode<JwtDecoded>(accessToken);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
+      body: JSON.stringify({ premium: true }),
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'PATCH'
+    });
+    await response.json();
   };
-  // ray test touch >
 
   return (
     <OctavModal
