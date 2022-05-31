@@ -1,5 +1,4 @@
 
-// ray test touch <
 import clsx from 'clsx';
 
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
@@ -47,4 +46,3 @@ const PremiumUpgradeModal = ({
 type Props = Omit<OctavModalProps, 'children'>;
 
 export default PremiumUpgradeModal;
-// ray test touch >

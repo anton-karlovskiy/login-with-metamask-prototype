@@ -36,6 +36,7 @@ yarn start
 - Handle form validation. e.g. `react-hook-form`
 - Integrate storybook.
 - Integrate `react-error-boundary`.
+- Integrate `react-query`.
 
 ## Notes
 
