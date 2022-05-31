@@ -3,7 +3,7 @@ import * as React from 'react';
 import type { Web3ReactHooks } from '@web3-react/core';
 import type { MetaMask } from '@web3-react/metamask';
 
-import Button from 'components/Button';
+import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 
 interface Props {
   connector: MetaMask;
@@ -22,9 +22,9 @@ function ConnectWalletUI({
 }: Props) {
   if (error) {
     return (
-      <Button onClick={() => void connector.activate(undefined)}>
+      <OctavYellowContainedButton onClick={() => void connector.activate(undefined)}>
         Try Again?
-      </Button>
+      </OctavYellowContainedButton>
     );
   } else if (isActive) {
     if (chainId === undefined) {
@@ -32,13 +32,13 @@ function ConnectWalletUI({
     }
 
     return (
-      <Button onClick={() => void connector.deactivate()}>
+      <OctavYellowContainedButton onClick={() => void connector.deactivate()}>
         Disconnect
-      </Button>
+      </OctavYellowContainedButton>
     );
   } else {
     return (
-      <Button
+      <OctavYellowContainedButton
         onClick={
           isActivating ?
             undefined :
@@ -46,7 +46,7 @@ function ConnectWalletUI({
         }
         disabled={isActivating}>
         Connect
-      </Button>
+      </OctavYellowContainedButton>
     );
   }
 }

@@ -3,7 +3,7 @@ import * as React from 'react';
 import jwtDecode from 'jwt-decode';
 import clsx from 'clsx';
 
-import Button from 'components/Button';
+import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import { Auth } from '../types';
 
 interface Props {
@@ -59,7 +59,10 @@ const Profile = ({
   }, [accessToken]);
 
   const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, username: value });
+    setState(previous => ({
+      ...previous,
+      username: value
+    }));
   };
 
   const handleSubmit = () => {
@@ -123,25 +126,26 @@ const Profile = ({
           My publicAddress is <strong>{publicAddress}</strong>
         </p>
       </div>
+      {/* TODO: should use react-hook-form and proper validation */}
       <form
         className={clsx(
           'inline-flex',
           'items-center',
           'space-x-4'
         )}>
-        <label htmlFor={USERNAME}>Change username: </label>
+        <label htmlFor={USERNAME}>Change username:</label>
         <input
           type='text'
           name={USERNAME}
           onChange={handleChange} />
-        <Button
+        <OctavYellowContainedButton
           disabled={loading}
           onClick={handleSubmit}>
           Submit
-        </Button>
+        </OctavYellowContainedButton>
       </form>
       <div>
-        <Button onClick={onLoggedOut}>Logout</Button>
+        <OctavYellowContainedButton onClick={onLoggedOut}>Logout</OctavYellowContainedButton>
       </div>
     </div>
   );
