@@ -9,7 +9,7 @@
 - [ethers.js](https://github.com/ethers-io/ethers.js/)
 - ESLint (`eslint-config-google`)
 - `husky` & `lint-staged`
-- `tailwindcss`
+- `tailwindcss` & `@headlessui/react` & `@tailwindcss/forms`
 
 ## References
 
@@ -32,8 +32,12 @@ yarn start
 - Follow https://nextjs.org/docs/basic-features/eslint.
 - Handle "TODO: could use tailwindcss".
 - Interact with the local storage using a well-designed mechanism. e.g. the one from `react-use`
-- Loading should be based on an enum or a state machine instead of a boolean according to [Stop using isLoading booleans](https://kentcdodds.com/blog/stop-using-isloading-booleans).
-- Handle form validation and proper loading procedure.
+- Handle form validation. e.g. `react-hook-form`
+- Integrate storybook.
+- Integrate `react-error-boundary`.
+- Integrate `react-query`.
+- Properly handle errors from the backend.
+- Fix a bug that the authenticated status persists when switching accounts. A solution could be to log out the switched new account.
 
 ## Notes
 

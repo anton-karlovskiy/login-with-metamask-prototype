@@ -3,28 +3,32 @@ import * as React from 'react';
 import jwtDecode from 'jwt-decode';
 import clsx from 'clsx';
 
+import PremiumUpgradeModal from './PremiumUpgradeModal';
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
-import { Auth } from '../types';
+import STATUSES from 'utils/constants/statuses';
+import {
+  Auth,
+  JwtDecoded
+} from '../types';
 
 interface Props {
   auth: Auth;
   onLoggedOut: () => void;
 }
 
-interface State {
-  loading: boolean;
-  user?: {
-    id: number;
-    username: string;
-  };
+interface User {
+  id: number;
   username: string;
+  premium: false;
 }
 
-interface JwtDecoded {
-  payload: {
-    id: string;
-    publicAddress: string;
-  };
+type StatusKeys = keyof typeof STATUSES;
+// TODO: correct type as it does not work as expected
+type StatusValues = typeof STATUSES[StatusKeys];
+interface State {
+  submitStatus: StatusValues;
+  user: User | undefined;
+  newUsername: string;
 }
 
 const USERNAME = 'username';
@@ -34,59 +38,72 @@ const Profile = ({
   onLoggedOut
 }: Props): JSX.Element => {
   const [state, setState] = React.useState<State>({
-    loading: false,
+    submitStatus: STATUSES.IDLE,
     user: undefined,
-    username: ''
+    newUsername: ''
   });
 
+  const [premiumUpgradeModalOpen, setPremiumUpgradeModalOpen] = React.useState(false);
+
   const { accessToken } = auth;
+  const { payload: { id } } = jwtDecode<JwtDecoded>(accessToken);
 
-  React.useEffect(() => {
+  const getUser = React.useCallback(async () => {
     if (!accessToken) return;
+    if (!id) return;
 
-    const {
-      payload: { id }
-    } = jwtDecode<JwtDecoded>(accessToken);
-
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
     })
       .then(response => response.json())
-      .then(user => setState(previous => ({ ...previous, user })))
-      .catch(window.alert);
-  }, [accessToken]);
+      .then((user: User) => {
+        setState(previous => ({
+          ...previous,
+          user
+        }));
+
+        if (!user.premium) {
+          setPremiumUpgradeModalOpen(true);
+        }
+      })
+      .catch((error: any) => {
+        window.alert(error?.message);
+      });
+  }, [
+    accessToken,
+    id
+  ]);
+
+  React.useEffect(() => {
+    if (!accessToken) return;
+    if (!id) return;
+
+    getUser();
+  }, [
+    accessToken,
+    id,
+    getUser
+  ]);
 
   const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
     setState(previous => ({
       ...previous,
-      username: value
+      newUsername: value
     }));
   };
 
   const handleSubmit = () => {
-    const {
-      user,
-      username
-    } = state;
+    const { newUsername } = state;
 
     setState(previous => ({
       ...previous,
-      loading: true
+      submitStatus: STATUSES.PENDING
     }));
 
-    // TODO: temporary workaround for now
-    // TODO: should prevent the form from being submitted while fetching `user`
-    if (!user) {
-      window.alert(
-        'The user id has not been fetched yet. Please try again in 5 seconds.'
-      );
-      return;
-    }
-
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${user.id}`, {
-      body: JSON.stringify({ username }),
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
+      body: JSON.stringify({ username: newUsername }),
       headers: {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
@@ -94,26 +111,41 @@ const Profile = ({
       method: 'PATCH'
     })
       .then(response => response.json())
-      .then(user => setState(previous => ({ ...previous, loading: false, user })))
-      .catch(error => {
-        window.alert(error);
-        setState(previous => ({ ...previous, loading: false }));
+      .then(user => {
+        setState(previous => ({
+          ...previous,
+          submitStatus: STATUSES.RESOLVED,
+          user
+        }));
+      })
+      .catch((error: any) => {
+        window.alert(error?.message);
+        setState(previous => ({
+          ...previous,
+          submitStatus: STATUSES.REJECTED
+        }));
       });
   };
 
-  const {
-    payload: { publicAddress }
-  } = jwtDecode<JwtDecoded>(accessToken);
+  const handlePremiumUpgradeModalOpen = () => {
+    setPremiumUpgradeModalOpen(true);
+  };
+
+  const handlePremiumUpgradeModalClose = () => {
+    setPremiumUpgradeModalOpen(false);
+  };
+
+  const { payload: { publicAddress } } = jwtDecode<JwtDecoded>(accessToken);
 
   const {
-    loading,
+    submitStatus,
     user
   } = state;
 
   const username = user && user.username;
 
   return (
-    <div className='space-y-4'>
+    <div className='space-y-10'>
       <div className='space-y-2'>
         <p>
           My username is {username ? <strong>{username}</strong> : 'not set.'}
@@ -129,8 +161,9 @@ const Profile = ({
       {/* TODO: should use react-hook-form and proper validation */}
       <form
         className={clsx(
-          'inline-flex',
+          'flex',
           'items-center',
+          'justify-center',
           'space-x-4'
         )}>
         <label htmlFor={USERNAME}>Change username:</label>
@@ -139,13 +172,33 @@ const Profile = ({
           name={USERNAME}
           onChange={handleChange} />
         <OctavYellowContainedButton
-          disabled={loading}
+          pending={submitStatus === STATUSES.PENDING}
           onClick={handleSubmit}>
           Submit
         </OctavYellowContainedButton>
       </form>
-      <div>
-        <OctavYellowContainedButton onClick={onLoggedOut}>Logout</OctavYellowContainedButton>
+      <div
+        className={clsx(
+          'flex',
+          'items-center',
+          'justify-center',
+          'space-x-4'
+        )}>
+        <OctavYellowContainedButton onClick={onLoggedOut}>
+          Logout
+        </OctavYellowContainedButton>
+        {!(state.user?.premium) && (
+          <OctavYellowContainedButton onClick={handlePremiumUpgradeModalOpen}>
+            Premium Upgrade
+          </OctavYellowContainedButton>
+        )}
+        {premiumUpgradeModalOpen && (
+          <PremiumUpgradeModal
+            open={premiumUpgradeModalOpen}
+            onClose={handlePremiumUpgradeModalClose}
+            accessToken={accessToken}
+            getUser={getUser} />
+        )}
       </div>
     </div>
   );
