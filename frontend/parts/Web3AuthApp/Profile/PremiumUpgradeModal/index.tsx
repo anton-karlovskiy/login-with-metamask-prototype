@@ -22,7 +22,8 @@ import { JwtDecoded } from '../../types';
 const PremiumUpgradeModal = ({
   open,
   onClose,
-  accessToken
+  accessToken,
+  getUser
 }: Props) => {
   const [submitStatus, setSubmitStatus] = React.useState(STATUSES.IDLE);
 
@@ -56,7 +57,12 @@ const PremiumUpgradeModal = ({
 
       await updatePremiumAtDB();
 
+      // TODO: should use `react-query`'s invalidation/refetch
+      await getUser();
+
       setSubmitStatus(STATUSES.RESOLVED);
+
+      onClose();
     } catch (error: any) {
       window.alert(error.message);
       setSubmitStatus(STATUSES.REJECTED);
@@ -111,6 +117,7 @@ const PremiumUpgradeModal = ({
 
 type Props = Omit<OctavModalProps, 'children'> & {
   accessToken: string;
+  getUser: () => Promise<void>;
 };
 
 export default PremiumUpgradeModal;

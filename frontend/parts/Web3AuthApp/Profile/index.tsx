@@ -48,26 +48,43 @@ const Profile = ({
   const { accessToken } = auth;
   const { payload: { id } } = jwtDecode<JwtDecoded>(accessToken);
 
-  React.useEffect(() => {
+  const getUser = React.useCallback(async () => {
     if (!accessToken) return;
     if (!id) return;
 
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
     })
       .then(response => response.json())
       .then((user: User) => {
-        setState(previous => ({ ...previous, user }));
+        setState(previous => ({
+          ...previous,
+          user
+        }));
+
         if (!user.premium) {
           setPremiumUpgradeModalOpen(true);
         }
       })
-      .catch(window.alert);
+      .catch((error: any) => {
+        window.alert(error?.message);
+      });
   }, [
     accessToken,
     id
+  ]);
+
+  React.useEffect(() => {
+    if (!accessToken) return;
+    if (!id) return;
+
+    getUser();
+  }, [
+    accessToken,
+    id,
+    getUser
   ]);
 
   const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,7 +196,8 @@ const Profile = ({
           <PremiumUpgradeModal
             open={premiumUpgradeModalOpen}
             onClose={handlePremiumUpgradeModalClose}
-            accessToken={accessToken} />
+            accessToken={accessToken}
+            getUser={getUser} />
         )}
       </div>
     </div>
