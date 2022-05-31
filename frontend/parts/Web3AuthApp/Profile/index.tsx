@@ -18,7 +18,7 @@ interface State {
     id: number;
     username: string;
   };
-  username: string;
+  newUsername: string;
 }
 
 interface JwtDecoded {
@@ -37,7 +37,7 @@ const Profile = ({
   const [state, setState] = React.useState<State>({
     loading: false,
     user: undefined,
-    username: ''
+    newUsername: ''
   });
 
   const [premiumUpgradeModalOpen, setPremiumUpgradeModalOpen] = React.useState(true);
@@ -62,14 +62,14 @@ const Profile = ({
   const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
     setState(previous => ({
       ...previous,
-      username: value
+      newUsername: value
     }));
   };
 
   const handleSubmit = () => {
     const {
       user,
-      username
+      newUsername
     } = state;
 
     setState(previous => ({
@@ -87,7 +87,7 @@ const Profile = ({
     }
 
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${user.id}`, {
-      body: JSON.stringify({ username }),
+      body: JSON.stringify({ username: newUsername }),
       headers: {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
