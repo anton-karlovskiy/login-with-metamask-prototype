@@ -5,18 +5,14 @@ import {
 	INTEGER,
 	Sequelize,
 	STRING,
-	// ray test touch <
 	BOOLEAN
-	// ray test touch >
 } from 'sequelize';
 
 import { User } from './models';
 
 const sequelize = new Sequelize('login-with-metamask-database', '', undefined, {
 	dialect: 'sqlite',
-	// ray test touch <
 	storage: path.join(os.tmpdir(), 'database.sqlite'),
-	// ray test touch >
 	logging: false
 });
 
@@ -39,13 +35,11 @@ User.init(
 			type: STRING,
 			unique: true
 		},
-		// ray test touch <
 		premium: {
 			type: BOOLEAN,
 			unique: false,
 			defaultValue: false
 		}
-		// ray test touch >
 	},
 	{
 		modelName: 'user',
