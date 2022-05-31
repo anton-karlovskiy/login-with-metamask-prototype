@@ -71,7 +71,7 @@ const PremiumUpgradeModal = ({
         </div>
         <div>
           <OctavYellowContainedButton onClick={handlePremiumUpgrade}>
-            Got it, thanks!
+            Pay {PREMIUM_PRICE_IN_ETH} ETH
           </OctavYellowContainedButton>
         </div>
       </OctavModalInnerWrapper>
