@@ -5,7 +5,17 @@ const nextConfig = {
     infuraKey: process.env.INFURA_KEY,
     alchemyKey: process.env.ALCHEMY_KEY,
     magicKey: process.env.MAGIC_KEY
+  },
+  // ray test touch <
+  webpack: config => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack']
+    });
+
+    return config;
   }
+  // ray test touch >
 };
 
 module.exports = nextConfig;

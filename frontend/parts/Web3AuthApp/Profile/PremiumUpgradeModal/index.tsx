@@ -1,4 +1,7 @@
 
+// ray test touch <
+import * as React from 'react';
+// ray test touch >
 import clsx from 'clsx';
 import { parseEther } from '@ethersproject/units';
 
@@ -14,11 +17,16 @@ import {
   PREMIUM_PAYMENT_ADDRESS
 } from 'config';
 import shortenAddress from 'utils/helpers/shorten-address';
+import STATUSES from 'utils/constants/statuses';
 
 const PremiumUpgradeModal = ({
   open,
   onClose
 }: Props) => {
+  // ray test touch <
+  const [submitStatus, setSubmitStatus] = React.useState(STATUSES.IDLE);
+  // ray test touch >
+
   const provider = hooks.useProvider();
   if (provider === undefined) {
     throw new Error('Something went wrong!');
@@ -37,14 +45,20 @@ const PremiumUpgradeModal = ({
         throw new Error('PREMIUM_PAYMENT_ADDRESS is not defined!');
       }
 
+      setSubmitStatus(STATUSES.PENDING);
+
       const signer = provider.getSigner();
       // TODO: should call a contract function
-      await signer.sendTransaction({
+      const tx = await signer.sendTransaction({
         to: PREMIUM_PAYMENT_ADDRESS,
         value: parseEther(PREMIUM_PRICE_IN_ETH)
       });
+      await tx.wait();
+
+      setSubmitStatus(STATUSES.RESOLVED);
     } catch (error: any) {
       window.alert(error.message);
+      setSubmitStatus(STATUSES.REJECTED);
     }
   };
 
@@ -70,7 +84,11 @@ const PremiumUpgradeModal = ({
           </p>
         </div>
         <div>
-          <OctavYellowContainedButton onClick={handlePremiumUpgrade}>
+          <OctavYellowContainedButton
+            onClick={handlePremiumUpgrade}
+            // ray test touch <
+            pending={submitStatus === STATUSES.PENDING}>
+            {/* ray test touch > */}
             Pay {PREMIUM_PRICE_IN_ETH} ETH
           </OctavYellowContainedButton>
         </div>
