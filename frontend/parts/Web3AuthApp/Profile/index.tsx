@@ -19,15 +19,11 @@ interface User {
   premium: false;
 }
 
-// ray test touch <
 type StatusKeys = keyof typeof STATUSES;
 // TODO: correct type as it does not work as expected
 type StatusValues = typeof STATUSES[StatusKeys];
-// ray test touch >
 interface State {
-  // ray test touch <
   submitStatus: StatusValues;
-  // ray test touch >
   user: User | undefined;
   newUsername: string;
 }
@@ -46,9 +42,7 @@ const Profile = ({
   onLoggedOut
 }: Props): JSX.Element => {
   const [state, setState] = React.useState<State>({
-    // ray test touch <
     submitStatus: STATUSES.IDLE,
-    // ray test touch >
     user: undefined,
     newUsername: ''
   });
@@ -92,9 +86,7 @@ const Profile = ({
 
     setState(previous => ({
       ...previous,
-      // ray test touch <
       submitStatus: STATUSES.PENDING
-      // ray test touch >
     }));
 
     // TODO: temporary workaround for now
@@ -118,9 +110,7 @@ const Profile = ({
       .then(user => {
         setState(previous => ({
           ...previous,
-          // ray test touch <
           submitStatus: STATUSES.RESOLVED,
-          // ray test touch >
           user
         }));
       })
@@ -128,9 +118,7 @@ const Profile = ({
         window.alert(error?.message);
         setState(previous => ({
           ...previous,
-          // ray test touch <
           submitStatus: STATUSES.REJECTED
-          // ray test touch >
         }));
       });
   };
@@ -146,9 +134,7 @@ const Profile = ({
   const { payload: { publicAddress } } = jwtDecode<JwtDecoded>(accessToken);
 
   const {
-    // ray test touch <
     submitStatus,
-    // ray test touch >
     user
   } = state;
 
@@ -182,9 +168,7 @@ const Profile = ({
           name={USERNAME}
           onChange={handleChange} />
         <OctavYellowContainedButton
-          // ray test touch <
           pending={submitStatus === STATUSES.PENDING}
-          // ray test touch >
           onClick={handleSubmit}>
           Submit
         </OctavYellowContainedButton>
