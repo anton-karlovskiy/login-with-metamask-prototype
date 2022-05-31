@@ -16,6 +16,7 @@ import {
   PREMIUM_PRICE_IN_ETH,
   PREMIUM_PAYMENT_ADDRESS
 } from 'config';
+import shortenAddress from 'utils/helpers/shorten-address';
 // ray test touch >
 
 const PremiumUpgradeModal = ({
@@ -67,7 +68,7 @@ const PremiumUpgradeModal = ({
             'text-lg',
             'font-medium'
           )}>
-          Hi {account}
+          Hi {shortenAddress(account)}
         </OctavModalTitle>
         <div>
           <p className='text-sm'>
