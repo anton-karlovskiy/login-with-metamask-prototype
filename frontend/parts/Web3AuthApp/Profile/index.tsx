@@ -12,12 +12,17 @@ interface Props {
   onLoggedOut: () => void;
 }
 
+// ray test touch <
+interface User {
+  id: number;
+  username: string;
+  premium: false;
+}
+// ray test touch >
+
 interface State {
   loading: boolean;
-  user?: {
-    id: number;
-    username: string;
-  };
+  user: User | undefined;
   newUsername: string;
 }
 
@@ -40,7 +45,9 @@ const Profile = ({
     newUsername: ''
   });
 
-  const [premiumUpgradeModalOpen, setPremiumUpgradeModalOpen] = React.useState(true);
+  // ray test touch <
+  const [premiumUpgradeModalOpen, setPremiumUpgradeModalOpen] = React.useState(false);
+  // ray test touch >
 
   const { accessToken } = auth;
 
@@ -55,7 +62,14 @@ const Profile = ({
       }
     })
       .then(response => response.json())
-      .then(user => setState(previous => ({ ...previous, user })))
+      .then((user: User) => {
+        // ray test touch <
+        setState(previous => ({ ...previous, user }));
+        if (!user.premium) {
+          setPremiumUpgradeModalOpen(true);
+        }
+        // ray test touch >
+      })
       .catch(window.alert);
   }, [accessToken]);
 
@@ -165,9 +179,13 @@ const Profile = ({
         <OctavYellowContainedButton onClick={onLoggedOut}>
           Logout
         </OctavYellowContainedButton>
-        <OctavYellowContainedButton onClick={handlePremiumUpgradeModalOpen}>
-          Premium Upgrade
-        </OctavYellowContainedButton>
+        {/* ray test touch < */}
+        {!(state.user?.premium) && (
+          <OctavYellowContainedButton onClick={handlePremiumUpgradeModalOpen}>
+            Premium Upgrade
+          </OctavYellowContainedButton>
+        )}
+        {/* ray test touch > */}
         {premiumUpgradeModalOpen && (
           <PremiumUpgradeModal
             open={premiumUpgradeModalOpen}
