@@ -9,7 +9,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // ray test touch <
       // MEMO: inspired by https://material-ui.com/customization/default-theme/
       zIndex: {
         octavMobileStepper: 1000,
@@ -20,7 +19,6 @@ module.exports = {
         octavSnackbar: 1400,
         octavTooltip: 1500
       }
-      // ray test touch >
     }
   },
   plugins: [require('@tailwindcss/forms')]

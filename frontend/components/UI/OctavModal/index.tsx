@@ -1,5 +1,4 @@
 
-// ray test touch <
 import * as React from 'react';
 import {
   Dialog,
@@ -127,4 +126,3 @@ export type {
 };
 
 export default OctavModal;
-// ray test touch >
