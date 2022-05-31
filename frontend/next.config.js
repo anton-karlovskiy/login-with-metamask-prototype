@@ -6,7 +6,6 @@ const nextConfig = {
     alchemyKey: process.env.ALCHEMY_KEY,
     magicKey: process.env.MAGIC_KEY
   },
-  // ray test touch <
   webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -15,7 +14,6 @@ const nextConfig = {
 
     return config;
   }
-  // ray test touch >
 };
 
 module.exports = nextConfig;

@@ -1,7 +1,5 @@
 
-// ray test touch <
 import * as React from 'react';
-// ray test touch >
 import clsx from 'clsx';
 import { parseEther } from '@ethersproject/units';
 
@@ -23,9 +21,7 @@ const PremiumUpgradeModal = ({
   open,
   onClose
 }: Props) => {
-  // ray test touch <
   const [submitStatus, setSubmitStatus] = React.useState(STATUSES.IDLE);
-  // ray test touch >
 
   const provider = hooks.useProvider();
   if (provider === undefined) {
@@ -86,9 +82,7 @@ const PremiumUpgradeModal = ({
         <div>
           <OctavYellowContainedButton
             onClick={handlePremiumUpgrade}
-            // ray test touch <
             pending={submitStatus === STATUSES.PENDING}>
-            {/* ray test touch > */}
             Pay {PREMIUM_PRICE_IN_ETH} ETH
           </OctavYellowContainedButton>
         </div>
