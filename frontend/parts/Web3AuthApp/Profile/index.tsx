@@ -19,7 +19,9 @@ interface User {
 }
 
 interface State {
+  // ray test touch <
   loading: boolean;
+  // ray test touch >
   user: User | undefined;
   newUsername: string;
 }

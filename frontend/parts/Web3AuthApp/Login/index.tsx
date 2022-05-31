@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import { hooks } from 'connectors/meta-mask';
 import { SIGN_MESSAGE_PREFIX } from 'config';
+import STATUSES from 'utils/constants/statuses';
 import { Auth } from '../types';
 
 interface Props {
@@ -21,8 +22,7 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
     throw new Error('Something went wrong!');
   }
 
-  // TODO: should follow https://kentcdodds.com/blog/stop-using-isloading-booleans
-  const [loading, setLoading] = React.useState(false); // Loading button state
+  const [submitStatus, setSubmitStatus] = React.useState(STATUSES.IDLE);
 
   const handleAuthenticate = ({
     publicAddress,
@@ -70,7 +70,7 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
 
   const handleClick = async () => {
     const publicAddress = account.toLowerCase();
-    setLoading(true);
+    setSubmitStatus(STATUSES.PENDING);
 
     // Look if the user with the current publicAddress is already present on the backend
     fetch(
@@ -86,10 +86,13 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
     // Send the signature to the backend on the `/auth` route
       .then(handleAuthenticate)
     // Pass `accessToken` back to its parent component (to save it in the local storage)
-      .then(onLoggedIn)
+      .then((auth: Auth) => {
+        onLoggedIn(auth);
+        setSubmitStatus(STATUSES.RESOLVED);
+      })
       .catch((error: any) => {
         window.alert(error?.message);
-        setLoading(false);
+        setSubmitStatus(STATUSES.REJECTED);
       });
   };
 
@@ -104,8 +107,9 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
           'mt-2.5',
           'mx-auto'
         )}
-        onClick={handleClick}>
-        {loading ? 'Loading...' : 'Login with MetaMask'}
+        onClick={handleClick}
+        pending={submitStatus === STATUSES.PENDING}>
+        Login with MetaMask
       </OctavYellowContainedButton>
     </div>
   );

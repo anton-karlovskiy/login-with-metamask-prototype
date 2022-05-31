@@ -32,7 +32,6 @@ yarn start
 - Follow https://nextjs.org/docs/basic-features/eslint.
 - Handle "TODO: could use tailwindcss".
 - Interact with the local storage using a well-designed mechanism. e.g. the one from `react-use`
-- Loading should be based on an enum or a state machine instead of a boolean according to [Stop using isLoading booleans](https://kentcdodds.com/blog/stop-using-isloading-booleans).
 - Handle form validation. e.g. `react-hook-form`
 - Integrate storybook.
 - Integrate `react-error-boundary`.
