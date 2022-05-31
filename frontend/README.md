@@ -37,6 +37,7 @@ yarn start
 - Integrate `react-error-boundary`.
 - Integrate `react-query`.
 - Properly handle errors from the backend.
+- Fix a bug that the authenticated status persists when switching accounts. A solution could be to log out the switched new account.
 
 ## Notes
 
