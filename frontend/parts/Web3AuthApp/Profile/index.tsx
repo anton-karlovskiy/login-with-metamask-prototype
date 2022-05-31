@@ -6,7 +6,10 @@ import clsx from 'clsx';
 import PremiumUpgradeModal from './PremiumUpgradeModal';
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import STATUSES from 'utils/constants/statuses';
-import { Auth } from '../types';
+import {
+  Auth,
+  JwtDecoded
+} from '../types';
 
 interface Props {
   auth: Auth;
@@ -26,13 +29,6 @@ interface State {
   submitStatus: StatusValues;
   user: User | undefined;
   newUsername: string;
-}
-
-interface JwtDecoded {
-  payload: {
-    id: string;
-    publicAddress: string;
-  };
 }
 
 const USERNAME = 'username';
@@ -191,7 +187,8 @@ const Profile = ({
         {premiumUpgradeModalOpen && (
           <PremiumUpgradeModal
             open={premiumUpgradeModalOpen}
-            onClose={handlePremiumUpgradeModalClose} />
+            onClose={handlePremiumUpgradeModalClose}
+            accessToken={accessToken} />
         )}
       </div>
     </div>

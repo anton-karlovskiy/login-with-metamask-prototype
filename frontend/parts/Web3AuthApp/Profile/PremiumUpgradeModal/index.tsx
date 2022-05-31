@@ -1,7 +1,8 @@
 
 import * as React from 'react';
-import clsx from 'clsx';
 import { parseEther } from '@ethersproject/units';
+import clsx from 'clsx';
+import jwtDecode from 'jwt-decode';
 
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import OctavModal, {
@@ -16,10 +17,12 @@ import {
 } from 'config';
 import shortenAddress from 'utils/helpers/shorten-address';
 import STATUSES from 'utils/constants/statuses';
+import { JwtDecoded } from '../../types';
 
 const PremiumUpgradeModal = ({
   open,
-  onClose
+  onClose,
+  accessToken
 }: Props) => {
   const [submitStatus, setSubmitStatus] = React.useState(STATUSES.IDLE);
 
@@ -51,12 +54,35 @@ const PremiumUpgradeModal = ({
       });
       await tx.wait();
 
+      // ray test touch <
+      await updatePremiumAtDB();
+      // ray test touch >
+
       setSubmitStatus(STATUSES.RESOLVED);
     } catch (error: any) {
       window.alert(error.message);
       setSubmitStatus(STATUSES.REJECTED);
     }
   };
+
+  // ray test touch <
+  const updatePremiumAtDB = async () => {
+    try {
+      const { payload: { id } } = jwtDecode<JwtDecoded>(accessToken);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
+        body: JSON.stringify({ premium: true }),
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        method: 'PATCH'
+      });
+      await response.json();
+    } catch (error: any) {
+      window.alert(error.message);
+    }
+  };
+  // ray test touch >
 
   return (
     <OctavModal
@@ -91,6 +117,8 @@ const PremiumUpgradeModal = ({
   );
 };
 
-type Props = Omit<OctavModalProps, 'children'>;
+type Props = Omit<OctavModalProps, 'children'> & {
+  accessToken: string;
+};
 
 export default PremiumUpgradeModal;
