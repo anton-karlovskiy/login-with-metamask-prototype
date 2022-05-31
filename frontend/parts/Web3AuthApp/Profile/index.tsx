@@ -17,9 +17,7 @@ interface State {
     id: number;
     username: string;
   };
-  // ray test touch <
   username: string;
-  // ray test touch >
 }
 
 interface JwtDecoded {
@@ -38,9 +36,7 @@ const Profile = ({
   const [state, setState] = React.useState<State>({
     loading: false,
     user: undefined,
-    // ray test touch <
     username: ''
-    // ray test touch >
   });
 
   const { accessToken } = auth;
@@ -62,21 +58,17 @@ const Profile = ({
       .catch(window.alert);
   }, [accessToken]);
 
-  // ray test touch <
-  const handleChange = ({
-    target: { value }
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, username: value });
+  const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+    setState(previous => ({
+      ...previous,
+      username: value
+    }));
   };
-  // ray test touch >
 
-  // ray test touch <
   const handleSubmit = () => {
     const {
       user,
-      // ray test touch <
       username
-      // ray test touch >
     } = state;
 
     setState(previous => ({
@@ -108,7 +100,6 @@ const Profile = ({
         setState(previous => ({ ...previous, loading: false }));
       });
   };
-  // ray test touch >
 
   const {
     payload: { publicAddress }
@@ -135,14 +126,14 @@ const Profile = ({
           My publicAddress is <strong>{publicAddress}</strong>
         </p>
       </div>
-      {/* ray test touch < */}
+      {/* TODO: should use react-hook-form and proper validation */}
       <form
         className={clsx(
           'inline-flex',
           'items-center',
           'space-x-4'
         )}>
-        <label htmlFor={USERNAME}>Change username: </label>
+        <label htmlFor={USERNAME}>Change username:</label>
         <input
           type='text'
           name={USERNAME}
@@ -153,7 +144,6 @@ const Profile = ({
           Submit
         </Button>
       </form>
-      {/* ray test touch > */}
       <div>
         <Button onClick={onLoggedOut}>Logout</Button>
       </div>
