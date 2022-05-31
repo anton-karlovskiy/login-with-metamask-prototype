@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import PremiumUpgradeModal from './PremiumUpgradeModal';
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
+import STATUSES from 'utils/constants/statuses';
 import { Auth } from '../types';
 
 interface Props {
@@ -18,9 +19,14 @@ interface User {
   premium: false;
 }
 
+// ray test touch <
+type StatusKeys = keyof typeof STATUSES;
+// TODO: correct type as it does not work as expected
+type StatusValues = typeof STATUSES[StatusKeys];
+// ray test touch >
 interface State {
   // ray test touch <
-  loading: boolean;
+  submitStatus: StatusValues;
   // ray test touch >
   user: User | undefined;
   newUsername: string;
@@ -40,7 +46,9 @@ const Profile = ({
   onLoggedOut
 }: Props): JSX.Element => {
   const [state, setState] = React.useState<State>({
-    loading: false,
+    // ray test touch <
+    submitStatus: STATUSES.IDLE,
+    // ray test touch >
     user: undefined,
     newUsername: ''
   });
@@ -84,7 +92,9 @@ const Profile = ({
 
     setState(previous => ({
       ...previous,
-      loading: true
+      // ray test touch <
+      submitStatus: STATUSES.PENDING
+      // ray test touch >
     }));
 
     // TODO: temporary workaround for now
@@ -105,12 +115,22 @@ const Profile = ({
       method: 'PATCH'
     })
       .then(response => response.json())
-      .then(user => setState(previous => ({ ...previous, loading: false, user })))
+      .then(user => {
+        setState(previous => ({
+          ...previous,
+          // ray test touch <
+          submitStatus: STATUSES.RESOLVED,
+          // ray test touch >
+          user
+        }));
+      })
       .catch((error: any) => {
         window.alert(error?.message);
         setState(previous => ({
           ...previous,
-          loading: false
+          // ray test touch <
+          submitStatus: STATUSES.REJECTED
+          // ray test touch >
         }));
       });
   };
@@ -126,7 +146,9 @@ const Profile = ({
   const { payload: { publicAddress } } = jwtDecode<JwtDecoded>(accessToken);
 
   const {
-    loading,
+    // ray test touch <
+    submitStatus,
+    // ray test touch >
     user
   } = state;
 
@@ -160,7 +182,9 @@ const Profile = ({
           name={USERNAME}
           onChange={handleChange} />
         <OctavYellowContainedButton
-          disabled={loading}
+          // ray test touch <
+          pending={submitStatus === STATUSES.PENDING}
+          // ray test touch >
           onClick={handleSubmit}>
           Submit
         </OctavYellowContainedButton>

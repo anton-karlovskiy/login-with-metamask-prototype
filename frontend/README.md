@@ -36,6 +36,7 @@ yarn start
 - Integrate storybook.
 - Integrate `react-error-boundary`.
 - Integrate `react-query`.
+- Properly handle errors from the backend.
 
 ## Notes
 
