@@ -46,11 +46,11 @@ const Profile = ({
   const [premiumUpgradeModalOpen, setPremiumUpgradeModalOpen] = React.useState(false);
 
   const { accessToken } = auth;
+  const { payload: { id } } = jwtDecode<JwtDecoded>(accessToken);
 
   React.useEffect(() => {
     if (!accessToken) return;
-
-    const { payload: { id } } = jwtDecode<JwtDecoded>(accessToken);
+    if (!id) return;
 
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
       headers: {
@@ -65,7 +65,10 @@ const Profile = ({
         }
       })
       .catch(window.alert);
-  }, [accessToken]);
+  }, [
+    accessToken,
+    id
+  ]);
 
   const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
     setState(previous => ({
@@ -75,26 +78,14 @@ const Profile = ({
   };
 
   const handleSubmit = () => {
-    const {
-      user,
-      newUsername
-    } = state;
+    const { newUsername } = state;
 
     setState(previous => ({
       ...previous,
       submitStatus: STATUSES.PENDING
     }));
 
-    // TODO: temporary workaround for now
-    // TODO: should prevent the form from being submitted while fetching `user`
-    if (!user) {
-      window.alert(
-        'The user id has not been fetched yet. Please try again in 5 seconds.'
-      );
-      return;
-    }
-
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${user.id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`, {
       body: JSON.stringify({ username: newUsername }),
       headers: {
         Authorization: `Bearer ${accessToken}`,
