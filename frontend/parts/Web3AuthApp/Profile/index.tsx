@@ -12,13 +12,11 @@ interface Props {
   onLoggedOut: () => void;
 }
 
-// ray test touch <
 interface User {
   id: number;
   username: string;
   premium: false;
 }
-// ray test touch >
 
 interface State {
   loading: boolean;
@@ -45,9 +43,7 @@ const Profile = ({
     newUsername: ''
   });
 
-  // ray test touch <
   const [premiumUpgradeModalOpen, setPremiumUpgradeModalOpen] = React.useState(false);
-  // ray test touch >
 
   const { accessToken } = auth;
 
@@ -63,12 +59,10 @@ const Profile = ({
     })
       .then(response => response.json())
       .then((user: User) => {
-        // ray test touch <
         setState(previous => ({ ...previous, user }));
         if (!user.premium) {
           setPremiumUpgradeModalOpen(true);
         }
-        // ray test touch >
       })
       .catch(window.alert);
   }, [accessToken]);
@@ -179,13 +173,11 @@ const Profile = ({
         <OctavYellowContainedButton onClick={onLoggedOut}>
           Logout
         </OctavYellowContainedButton>
-        {/* ray test touch < */}
         {!(state.user?.premium) && (
           <OctavYellowContainedButton onClick={handlePremiumUpgradeModalOpen}>
             Premium Upgrade
           </OctavYellowContainedButton>
         )}
-        {/* ray test touch > */}
         {premiumUpgradeModalOpen && (
           <PremiumUpgradeModal
             open={premiumUpgradeModalOpen}
