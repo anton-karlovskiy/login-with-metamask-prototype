@@ -29,9 +29,7 @@ const OctavModalInnerWrapper = React.forwardRef<Ref, React.ComponentPropsWithRef
       'transform',
       'w-full',
       'my-8',
-      // ray test touch <
       'bg-blue-400', // TODO: out of the design system
-      // ray test touch >
       'rounded-lg',
       className
     )}

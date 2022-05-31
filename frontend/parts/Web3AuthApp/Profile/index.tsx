@@ -3,9 +3,7 @@ import * as React from 'react';
 import jwtDecode from 'jwt-decode';
 import clsx from 'clsx';
 
-// ray test touch <
 import PremiumUpgradeModal from './PremiumUpgradeModal';
-// ray test touch >
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import { Auth } from '../types';
 
@@ -42,9 +40,7 @@ const Profile = ({
     username: ''
   });
 
-  // ray test touch <
   const [premiumUpgradeModalOpen, setPremiumUpgradeModalOpen] = React.useState(true);
-  // ray test touch >
 
   const { accessToken } = auth;
 
@@ -109,7 +105,6 @@ const Profile = ({
       });
   };
 
-  // ray test touch <
   const handlePremiumUpgradeModalOpen = () => {
     setPremiumUpgradeModalOpen(true);
   };
@@ -117,7 +112,6 @@ const Profile = ({
   const handlePremiumUpgradeModalClose = () => {
     setPremiumUpgradeModalOpen(false);
   };
-  // ray test touch >
 
   const { payload: { publicAddress } } = jwtDecode<JwtDecoded>(accessToken);
 
@@ -171,7 +165,6 @@ const Profile = ({
         <OctavYellowContainedButton onClick={onLoggedOut}>
           Logout
         </OctavYellowContainedButton>
-        {/* ray test touch < */}
         <OctavYellowContainedButton onClick={handlePremiumUpgradeModalOpen}>
           Premium Upgrade
         </OctavYellowContainedButton>
@@ -180,7 +173,6 @@ const Profile = ({
             open={premiumUpgradeModalOpen}
             onClose={handlePremiumUpgradeModalClose} />
         )}
-        {/* ray test touch > */}
       </div>
     </div>
   );
