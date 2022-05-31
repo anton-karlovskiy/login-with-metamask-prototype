@@ -87,8 +87,8 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
       .then(handleAuthenticate)
     // Pass `accessToken` back to its parent component (to save it in the local storage)
       .then(onLoggedIn)
-      .catch(error => {
-        window.alert(error);
+      .catch((error: any) => {
+        window.alert(error?.message);
         setLoading(false);
       });
   };

@@ -104,8 +104,8 @@ const Profile = ({
     })
       .then(response => response.json())
       .then(user => setState(previous => ({ ...previous, loading: false, user })))
-      .catch(error => {
-        window.alert(error);
+      .catch((error: any) => {
+        window.alert(error?.message);
         setState(previous => ({
           ...previous,
           loading: false
