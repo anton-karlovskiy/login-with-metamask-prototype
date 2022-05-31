@@ -3,6 +3,9 @@ import * as React from 'react';
 import jwtDecode from 'jwt-decode';
 import clsx from 'clsx';
 
+// ray test touch <
+import PremiumUpgradeModal from './PremiumUpgradeModal';
+// ray test touch >
 import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import { Auth } from '../types';
 
@@ -38,6 +41,10 @@ const Profile = ({
     user: undefined,
     username: ''
   });
+
+  // ray test touch <
+  const [premiumUpgradeModalOpen, setPremiumUpgradeModalOpen] = React.useState(true);
+  // ray test touch >
 
   const { accessToken } = auth;
 
@@ -102,9 +109,17 @@ const Profile = ({
       });
   };
 
-  const {
-    payload: { publicAddress }
-  } = jwtDecode<JwtDecoded>(accessToken);
+  // ray test touch <
+  const handlePremiumUpgradeModalOpen = () => {
+    setPremiumUpgradeModalOpen(true);
+  };
+
+  const handlePremiumUpgradeModalClose = () => {
+    setPremiumUpgradeModalOpen(false);
+  };
+  // ray test touch >
+
+  const { payload: { publicAddress } } = jwtDecode<JwtDecoded>(accessToken);
 
   const {
     loading,
@@ -114,7 +129,7 @@ const Profile = ({
   const username = user && user.username;
 
   return (
-    <div className='space-y-4'>
+    <div className='space-y-10'>
       <div className='space-y-2'>
         <p>
           My username is {username ? <strong>{username}</strong> : 'not set.'}
@@ -130,8 +145,9 @@ const Profile = ({
       {/* TODO: should use react-hook-form and proper validation */}
       <form
         className={clsx(
-          'inline-flex',
+          'flex',
           'items-center',
+          'justify-center',
           'space-x-4'
         )}>
         <label htmlFor={USERNAME}>Change username:</label>
@@ -145,8 +161,26 @@ const Profile = ({
           Submit
         </OctavYellowContainedButton>
       </form>
-      <div>
-        <OctavYellowContainedButton onClick={onLoggedOut}>Logout</OctavYellowContainedButton>
+      <div
+        className={clsx(
+          'flex',
+          'items-center',
+          'justify-center',
+          'space-x-4'
+        )}>
+        <OctavYellowContainedButton onClick={onLoggedOut}>
+          Logout
+        </OctavYellowContainedButton>
+        {/* ray test touch < */}
+        <OctavYellowContainedButton onClick={handlePremiumUpgradeModalOpen}>
+          Premium Upgrade
+        </OctavYellowContainedButton>
+        {premiumUpgradeModalOpen && (
+          <PremiumUpgradeModal
+            open={premiumUpgradeModalOpen}
+            onClose={handlePremiumUpgradeModalClose} />
+        )}
+        {/* ray test touch > */}
       </div>
     </div>
   );

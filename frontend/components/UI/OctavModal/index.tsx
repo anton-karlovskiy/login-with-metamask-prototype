@@ -29,8 +29,9 @@ const OctavModalInnerWrapper = React.forwardRef<Ref, React.ComponentPropsWithRef
       'transform',
       'w-full',
       'my-8',
-      'bg-paperInLightMode',
-      'dark:bg-paperInDarkMode',
+      // ray test touch <
+      'bg-blue-400', // TODO: out of the design system
+      // ray test touch >
       'rounded-lg',
       className
     )}
@@ -43,7 +44,7 @@ const OctavModal = ({
   onClose,
   children,
   initialFocus
-}: Props): JSX.Element => {
+}: OctavModalProps): JSX.Element => {
   return (
     <Transition
       appear
@@ -114,7 +115,7 @@ export {
 };
 
 // TODO: should use types from @headlessui/react
-export interface Props {
+export interface OctavModalProps {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
