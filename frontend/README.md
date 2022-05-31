@@ -38,6 +38,7 @@ yarn start
 - Integrate `react-query`.
 - Properly handle errors from the backend.
 - Fix a bug that the authenticated status persists when switching accounts. A solution could be to log out the switched new account.
+- Resolve a security concern like updating the premium field at the database after paying in ETH. That API could be abused without security properly handled.
 
 ## Notes
 

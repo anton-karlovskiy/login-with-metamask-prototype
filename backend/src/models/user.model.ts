@@ -6,7 +6,5 @@ export class User extends Model {
 	public nonce!: number;
 	public publicAddress!: string;
 	public username?: string; // For nullable fields
-	// ray test touch <
 	public premium?: boolean;
-	// ray test touch >
 }
