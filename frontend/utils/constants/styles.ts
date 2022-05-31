@@ -1,5 +1,4 @@
 
-// ray test touch <
 import clsx from 'clsx';
 
 // MEMO: inspired by https://mui.com/customization/dark-mode/#dark-mode-with-custom-palette
@@ -27,4 +26,3 @@ export {
   DISABLED_TEXT_CLASSES,
   TEXT_CLASSES
 };
-// ray test touch >

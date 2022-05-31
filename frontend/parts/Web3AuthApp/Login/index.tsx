@@ -2,7 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import Button from 'components/Button';
+import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import { hooks } from 'connectors/meta-mask';
 import { SIGN_MESSAGE_PREFIX } from 'config';
 import { Auth } from '../types';
@@ -98,7 +98,7 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
       <p>
         Login to continue to your Octav account.
       </p>
-      <Button
+      <OctavYellowContainedButton
         className={clsx(
           'block',
           'mt-2.5',
@@ -106,7 +106,7 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
         )}
         onClick={handleClick}>
         {loading ? 'Loading...' : 'Login with MetaMask'}
-      </Button>
+      </OctavYellowContainedButton>
     </div>
   );
 };

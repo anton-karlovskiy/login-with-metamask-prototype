@@ -3,7 +3,7 @@ import * as React from 'react';
 import jwtDecode from 'jwt-decode';
 import clsx from 'clsx';
 
-import Button from 'components/Button';
+import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
 import { Auth } from '../types';
 
 interface Props {
@@ -138,14 +138,14 @@ const Profile = ({
           type='text'
           name={USERNAME}
           onChange={handleChange} />
-        <Button
+        <OctavYellowContainedButton
           disabled={loading}
           onClick={handleSubmit}>
           Submit
-        </Button>
+        </OctavYellowContainedButton>
       </form>
       <div>
-        <Button onClick={onLoggedOut}>Logout</Button>
+        <OctavYellowContainedButton onClick={onLoggedOut}>Logout</OctavYellowContainedButton>
       </div>
     </div>
   );

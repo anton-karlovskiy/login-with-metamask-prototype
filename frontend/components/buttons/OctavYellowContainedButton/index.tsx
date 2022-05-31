@@ -1,5 +1,4 @@
 
-// ray test touch <
 import * as React from 'react';
 import clsx from 'clsx';
 
@@ -86,4 +85,3 @@ OctavYellowContainedButton.displayName = 'OctavYellowContainedButton';
 export type Props = CustomProps & OctavButtonBaseProps;
 
 export default OctavYellowContainedButton;
-// ray test touch >
