@@ -47,7 +47,7 @@ const Web3AuthApp = (): JSX.Element => {
           'text-white'
         )}>
         <h1 className='text-2xl'>
-          Welcome to Octav technical project
+          Welcome to Login with MetaMask
         </h1>
       </header>
       <div

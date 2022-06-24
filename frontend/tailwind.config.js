@@ -12,13 +12,13 @@ module.exports = {
     extend: {
       // MEMO: inspired by https://material-ui.com/customization/default-theme/
       zIndex: {
-        octavMobileStepper: 1000,
-        octavSpeedDial: 1050,
-        octavAppBar: 1100,
-        octavDrawer: 1200,
-        octavModal: 1300,
-        octavSnackbar: 1400,
-        octavTooltip: 1500
+        mobileStepper: 1000,
+        speedDial: 1050,
+        appBar: 1100,
+        drawer: 1200,
+        modal: 1300,
+        snackbar: 1400,
+        tooltip: 1500
       }
     }
   },

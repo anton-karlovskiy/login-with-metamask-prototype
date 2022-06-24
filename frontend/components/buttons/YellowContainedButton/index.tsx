@@ -2,7 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import OctavButtonBase, { Props as OctavButtonBaseProps } from 'components/UI/OctavButtonBase';
+import ButtonBase, { Props as ButtonBaseProps } from 'components/UI/ButtonBase';
 import {
   DISABLED_BACKGROUND_CLASSES,
   DISABLED_TEXT_CLASSES,
@@ -17,7 +17,7 @@ interface CustomProps {
 }
 
 type Ref = HTMLButtonElement;
-const OctavYellowContainedButton = React.forwardRef<Ref, Props>(({
+const YellowContainedButton = React.forwardRef<Ref, Props>(({
   className,
   children,
   startIcon,
@@ -29,7 +29,7 @@ const OctavYellowContainedButton = React.forwardRef<Ref, Props>(({
   const disabledOrPending = disabled || pending;
 
   return (
-    <OctavButtonBase
+    <ButtonBase
       ref={ref}
       type='button'
       className={clsx(
@@ -77,11 +77,11 @@ const OctavYellowContainedButton = React.forwardRef<Ref, Props>(({
         {children}
       </span>
       {endIcon}
-    </OctavButtonBase>
+    </ButtonBase>
   );
 });
-OctavYellowContainedButton.displayName = 'OctavYellowContainedButton';
+YellowContainedButton.displayName = 'YellowContainedButton';
 
-export type Props = CustomProps & OctavButtonBaseProps;
+export type Props = CustomProps & ButtonBaseProps;
 
-export default OctavYellowContainedButton;
+export default YellowContainedButton;

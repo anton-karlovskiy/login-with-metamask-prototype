@@ -7,7 +7,7 @@ interface CustomProps {
 }
 
 type Ref = HTMLButtonElement;
-const OctavButtonBase = React.forwardRef<Ref, Props>(({
+const ButtonBase = React.forwardRef<Ref, Props>(({
   disabled = false,
   className,
   children,
@@ -28,8 +28,8 @@ const OctavButtonBase = React.forwardRef<Ref, Props>(({
     {children}
   </button>
 ));
-OctavButtonBase.displayName = 'OctavButtonBase';
+ButtonBase.displayName = 'ButtonBase';
 
 export type Props = CustomProps & React.ComponentPropsWithRef<'button'>;
 
-export default OctavButtonBase;
+export default ButtonBase;

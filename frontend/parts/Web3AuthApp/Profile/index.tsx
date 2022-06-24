@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 import clsx from 'clsx';
 
 import PremiumUpgradeModal from './PremiumUpgradeModal';
-import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
+import YellowContainedButton from 'components/buttons/YellowContainedButton';
 import STATUSES from 'utils/constants/statuses';
 import {
   Auth,
@@ -171,11 +171,11 @@ const Profile = ({
           type='text'
           name={USERNAME}
           onChange={handleChange} />
-        <OctavYellowContainedButton
+        <YellowContainedButton
           pending={submitStatus === STATUSES.PENDING}
           onClick={handleSubmit}>
           Submit
-        </OctavYellowContainedButton>
+        </YellowContainedButton>
       </form>
       <div
         className={clsx(
@@ -184,13 +184,13 @@ const Profile = ({
           'justify-center',
           'space-x-4'
         )}>
-        <OctavYellowContainedButton onClick={onLoggedOut}>
+        <YellowContainedButton onClick={onLoggedOut}>
           Logout
-        </OctavYellowContainedButton>
+        </YellowContainedButton>
         {!(state.user?.premium) && (
-          <OctavYellowContainedButton onClick={handlePremiumUpgradeModalOpen}>
+          <YellowContainedButton onClick={handlePremiumUpgradeModalOpen}>
             Premium Upgrade
-          </OctavYellowContainedButton>
+          </YellowContainedButton>
         )}
         {premiumUpgradeModalOpen && (
           <PremiumUpgradeModal
