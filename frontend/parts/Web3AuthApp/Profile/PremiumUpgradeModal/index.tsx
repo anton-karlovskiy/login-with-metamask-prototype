@@ -4,12 +4,12 @@ import { parseEther } from '@ethersproject/units';
 import clsx from 'clsx';
 import jwtDecode from 'jwt-decode';
 
-import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
-import OctavModal, {
-  OctavModalTitle,
-  OctavModalInnerWrapper,
-  OctavModalProps
-} from 'components/UI/OctavModal';
+import YellowContainedButton from 'components/buttons/YellowContainedButton';
+import Modal, {
+  ModalTitle,
+  ModalInnerWrapper,
+  ModalProps
+} from 'components/UI/Modal';
 import { hooks } from 'connectors/meta-mask';
 import {
   PREMIUM_PRICE_IN_ETH,
@@ -83,39 +83,39 @@ const PremiumUpgradeModal = ({
   };
 
   return (
-    <OctavModal
+    <Modal
       open={open}
       onClose={onClose}>
-      <OctavModalInnerWrapper
+      <ModalInnerWrapper
         className={clsx(
           'max-w-lg',
           'space-y-4'
         )}>
-        <OctavModalTitle
+        <ModalTitle
           className={clsx(
             'text-lg',
             'font-medium'
           )}>
           Hi {shortenAddress(account)}
-        </OctavModalTitle>
+        </ModalTitle>
         <div>
           <p className='text-sm'>
             Icy Premium is the edge you&apos;re looking for. Get the latest alpha and never FOMO into a project again.
           </p>
         </div>
         <div>
-          <OctavYellowContainedButton
+          <YellowContainedButton
             onClick={handlePremiumUpgrade}
             pending={submitStatus === STATUSES.PENDING}>
             Pay {PREMIUM_PRICE_IN_ETH} ETH
-          </OctavYellowContainedButton>
+          </YellowContainedButton>
         </div>
-      </OctavModalInnerWrapper>
-    </OctavModal>
+      </ModalInnerWrapper>
+    </Modal>
   );
 };
 
-type Props = Omit<OctavModalProps, 'children'> & {
+type Props = Omit<ModalProps, 'children'> & {
   accessToken: string;
   getUser: () => Promise<void>;
 };

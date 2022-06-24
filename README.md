@@ -1,6 +1,6 @@
-# Octav Technical Project
+# Login with MetaMask
 
-![demo](octav-technical-project-demo.gif)
+![demo](login-with-metamask-demo.gif)
 
 There are 2 directories in this repo: a [`backend`](./backend) which is a REST API written in Express, and a [`frontend`](./frontend) which is a Next.js application.
 

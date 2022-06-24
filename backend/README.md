@@ -1,5 +1,5 @@
 
-# Octav Technical Project (Backend)
+# Login with MetaMask (Backend)
 
 ## Deploy to Heroku
 

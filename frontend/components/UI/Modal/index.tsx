@@ -7,13 +7,13 @@ import {
 import { Props as HeadlessProps } from '@headlessui/react/dist/types';
 import clsx from 'clsx';
 
-type OctavModalTitleProps = HeadlessProps<typeof Dialog.Title>;
-const OctavModalTitle = (props: OctavModalTitleProps): JSX.Element => (
+type ModalTitleProps = HeadlessProps<typeof Dialog.Title>;
+const ModalTitle = (props: ModalTitleProps): JSX.Element => (
   <Dialog.Title {...props} />
 );
 
 type Ref = HTMLDivElement;
-const OctavModalInnerWrapper = React.forwardRef<Ref, React.ComponentPropsWithRef<'div'>>(({
+const ModalInnerWrapper = React.forwardRef<Ref, React.ComponentPropsWithRef<'div'>>(({
   className,
   ...rest
 }, ref): JSX.Element => (
@@ -35,14 +35,14 @@ const OctavModalInnerWrapper = React.forwardRef<Ref, React.ComponentPropsWithRef
     )}
     {...rest} />
 ));
-OctavModalInnerWrapper.displayName = 'OctavModalInnerWrapper';
+ModalInnerWrapper.displayName = 'ModalInnerWrapper';
 
-const OctavModal = ({
+const Modal = ({
   open = false,
   onClose,
   children,
   initialFocus
-}: OctavModalProps): JSX.Element => {
+}: ModalProps): JSX.Element => {
   return (
     <Transition
       appear
@@ -52,7 +52,7 @@ const OctavModal = ({
         className={clsx(
           'fixed',
           'inset-0',
-          'z-octavModal',
+          'z-modal',
           'overflow-y-auto'
         )}
         open={open}
@@ -108,12 +108,12 @@ const OctavModal = ({
 };
 
 export {
-  OctavModalTitle,
-  OctavModalInnerWrapper
+  ModalTitle,
+  ModalInnerWrapper
 };
 
 // TODO: should use types from @headlessui/react
-export interface OctavModalProps {
+export interface ModalProps {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
@@ -121,7 +121,7 @@ export interface OctavModalProps {
 }
 
 export type {
-  OctavModalTitleProps
+  ModalTitleProps
 };
 
-export default OctavModal;
+export default Modal;

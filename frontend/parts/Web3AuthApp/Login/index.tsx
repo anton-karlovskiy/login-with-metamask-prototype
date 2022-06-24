@@ -2,7 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import OctavYellowContainedButton from 'components/buttons/OctavYellowContainedButton';
+import YellowContainedButton from 'components/buttons/YellowContainedButton';
 import { hooks } from 'connectors/meta-mask';
 import { SIGN_MESSAGE_PREFIX } from 'config';
 import STATUSES from 'utils/constants/statuses';
@@ -99,9 +99,9 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
   return (
     <div>
       <p>
-        Login to continue to your Octav account.
+        Login to continue to your LWM account.
       </p>
-      <OctavYellowContainedButton
+      <YellowContainedButton
         className={clsx(
           'block',
           'mt-2.5',
@@ -110,7 +110,7 @@ const Login = ({ onLoggedIn }: Props): JSX.Element => {
         onClick={handleClick}
         pending={submitStatus === STATUSES.PENDING}>
         Login with MetaMask
-      </OctavYellowContainedButton>
+      </YellowContainedButton>
     </div>
   );
 };

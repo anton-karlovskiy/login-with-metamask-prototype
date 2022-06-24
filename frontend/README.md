@@ -1,5 +1,5 @@
 
-# Octav Technical Project (Frontend)
+# Login with MetaMask (Frontend)
 
 ## Tech stacks
 
