@@ -1,32 +1,85 @@
-# Login with MetaMask
+# 🦊 Login with MetaMask
 
-<!-- TODO: suppress for now -->
-<!-- ![demo](login-with-metamask-demo.gif) -->
+A simple full-stack demo showing how to implement MetaMask authentication in a web application.
+This project demonstrates how to connect a dApp to the Ethereum blockchain, verify wallet ownership, and log users in securely without traditional credentials.
 
-There are 2 directories in this repo: a [`backend`](./backend) which is a REST API written in Express, and a [`frontend`](./frontend) which is a Next.js application.
+![demo](login-with-metamask-demo.gif)
 
-#### Start the project using yarn
+## 📂 Project Structure
 
-From the root folder of this repo, run
+The repository has two main parts:
+
+- [backend](https://github.com/anton-karlovskiy/login-with-metamask-prototype/blob/main/backend) → REST API built with Express.js
+
+- [frontend](https://github.com/anton-karlovskiy/login-with-metamask-prototype/blob/main/frontend) → Web client built with Next.js
+
+## 🚀 Getting Started
+
+### 1. Install Dependencies
+
+From the root of the repo:
 
 ```bash
-yarn install # Install root dependencies
-cd backend && yarn install # Install backend dependencies
-cd ../frontend && yarn install # Install frontend dependencies
-cd .. # Go back to root folder
-yarn start # Will launch the frontend and the backend at the same time
+yarn install                 # Install root dependencies
+cd backend && yarn install   # Install backend dependencies
+cd ../frontend && yarn install  # Install frontend dependencies
+cd ..                        # Return to root
 ```
 
-The backend should be running on `localhost:8000`, and the frontend on `localhost:3000`.
+### 2. Start the Project
 
-Alternatively, you can start the frontend and the backend separately:
+Run both frontend and backend together:
 
 ```bash
-# Start the backend
+yarn start
+```
+
+- Backend → runs at http://localhost:8000
+
+- Frontend → runs at http://localhost:3000
+
+### 3. Run Services Separately (Optional)
+
+You can also start each service individually:
+
+```bash
+# Start backend
 cd backend
 yarn start
 
-# Start the frontend
+# Start frontend
 cd frontend
 yarn start
 ```
+
+## 🔑 Features
+
+- 🔒 Secure wallet-based authentication using MetaMask
+
+- 🌐 Full-stack setup with Next.js and Express.js
+
+- 🛠️ Easy to run locally with yarn start
+
+## 🔄 Usage Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User (Browser + MetaMask)
+    participant F as Frontend (Next.js)
+    participant B as Backend (Express API)
+
+    U->>F: Open dApp (login page)
+    F->>U: Request wallet connection
+    U->>MetaMask: Sign message with private key
+    MetaMask->>F: Return signed message
+    F->>B: Send signed message + wallet address
+    B->>B: Verify signature & generate auth token
+    B->>F: Return success + session token
+    F->>U: User logged in (authenticated)
+```
+
+## 📌 Notes
+
+- Ensure you have MetaMask installed in your browser before testing.
+
+- This project is intended as a learning/demo app and can be extended into production-ready Web3 applications.
